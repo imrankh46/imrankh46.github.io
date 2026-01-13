@@ -3,83 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imran Ullah | ML Engineer & AI Researcher</title>
-    <meta name="description" content="Portfolio of Imran Ullah - Machine Learning Researcher specializing in LLMs, NLP, and Multimodal AI.">
-    
+    <title>Imran Ullah | AI Researcher & ML Engineer</title>
+    <meta name="description" content="Portfolio of Imran Ullah - Expert in LLMs, NLP, and Computer Vision.">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts (Outfit for modern headings, Inter for body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Custom Config -->
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
+                        heading: ['Outfit', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#3b82f6', // Blue 500
-                        secondary: '#10b981', // Emerald 500
-                        dark: '#0f172a', // Slate 900
-                        card: '#1e293b', // Slate 800
+                        // Matching the "Blue" from your profile image description
+                        primary: '#3b82f6', 
+                        accent: '#06b6d4', 
+                        dark: '#0B0F19', 
+                        card: '#111827', 
+                        'card-hover': '#1F2937'
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
                     }
                 }
             }
         }
     </script>
-    
+
     <style>
-        /* Custom Animations */
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Custom 3D & Glass Styles */
+        body {
+            background-color: #0B0F19;
+            color: #e2e8f0;
+            overflow-x: hidden;
         }
 
-        .glass-card {
-            background: rgba(30, 41, 59, 0.7);
+        /* The 3D Tilt Card Base */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            transition: transform 0.1s ease;
+        }
+        
+        .tilt-card-inner {
+            transform: translateZ(20px);
+        }
+
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
         .gradient-text {
-            background: linear-gradient(to right, #60a5fa, #34d399);
+            background: linear-gradient(135deg, #60A5FA 0%, #2DD4BF 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
     </style>
 </head>
-<body class="bg-dark text-slate-300 font-sans selection:bg-primary selection:text-white">
+<body class="antialiased selection:bg-primary selection:text-white">
+
+    <!-- Background Glow Effects -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
+    </div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur-md border-b border-slate-800">
+    <nav class="fixed w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0 font-bold text-xl text-white tracking-wider">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 font-heading font-bold text-2xl tracking-wide">
                     IMRAN<span class="text-primary">.AI</span>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="hover:text-primary transition px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="#research" class="hover:text-primary transition px-3 py-2 rounded-md text-sm font-medium">Publications</a>
-                        <a href="#projects" class="hover:text-primary transition px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-                        <a href="#experience" class="hover:text-primary transition px-3 py-2 rounded-md text-sm font-medium">Experience</a>
-                        <a href="#blog" class="hover:text-primary transition px-3 py-2 rounded-md text-sm font-medium">Blog</a>
-                        <a href="#contact" class="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium transition">Contact</a>
+                        <a href="#home" class="hover:text-primary transition-colors duration-300 font-medium text-sm">Home</a>
+                        <a href="#projects" class="hover:text-primary transition-colors duration-300 font-medium text-sm">Projects</a>
+                        <a href="#experience" class="hover:text-primary transition-colors duration-300 font-medium text-sm">Experience</a>
+                        <a href="#research" class="hover:text-primary transition-colors duration-300 font-medium text-sm">Research</a>
+                        <a href="#contact" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-blue-600 text-white font-medium text-sm hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300">Contact Me</a>
                     </div>
                 </div>
             </div>
@@ -87,300 +139,262 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
-        <!-- Background Elements -->
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
-        </div>
-
+    <section id="home" class="min-h-screen flex items-center pt-20 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row items-center gap-12">
-            <div class="md:w-1/2 text-center md:text-left fade-in-up" style="animation-delay: 0.1s;">
-                <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-secondary uppercase bg-secondary/10 rounded-full border border-secondary/20">
+            
+            <!-- Text Content -->
+            <div class="w-full md:w-1/2 z-10" data-aos="fade-right" data-aos-duration="1000">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold tracking-wide uppercase mb-6">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
                     Available for Collaboration
                 </div>
-                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                
+                <h1 class="font-heading text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
                     Hi, I'm <br>
                     <span class="gradient-text">Imran Ullah</span>
                 </h1>
-                <p class="text-lg md:text-xl text-slate-400 mb-8 max-w-lg mx-auto md:mx-0">
-                    Machine Learning Engineer & NLP Researcher specializing in 
-                    <strong class="text-white">LLM Fine-tuning</strong>, 
-                    <strong class="text-white">Multi-GPU Training</strong>, and 
-                    <strong class="text-white">Agentic AI</strong>.
+                
+                <p class="text-xl text-slate-400 mb-8 max-w-lg leading-relaxed">
+                    Machine Learning Engineer & Researcher specializing in 
+                    <span class="text-white font-semibold">LLM Fine-tuning</span>, 
+                    <span class="text-white font-semibold">Multi-GPU Training</span>, and 
+                    <span class="text-white font-semibold">Agentic AI Systems</span>.
                 </p>
-                
-                <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-10">
-                    <a href="https://linkedin.com/in/imranullahds" target="_blank" class="text-2xl text-slate-400 hover:text-[#0077B5] transition"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/imrankh46" target="_blank" class="text-2xl text-slate-400 hover:text-white transition"><i class="fab fa-github"></i></a>
-                    <a href="https://huggingface.co/Imran1" target="_blank" class="text-2xl text-slate-400 hover:text-[#FFD21E] transition">🤗</a>
-                    <a href="https://x.com/imran_ds" target="_blank" class="text-2xl text-slate-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
-                    <a href="https://medium.com/@imranullahds" target="_blank" class="text-2xl text-slate-400 hover:text-white transition"><i class="fab fa-medium"></i></a>
+
+                <div class="flex flex-wrap gap-4 mb-10">
+                    <a href="https://linkedin.com/in/imranullahds" target="_blank" class="w-12 h-12 rounded-xl glass-panel flex items-center justify-center text-slate-400 hover:text-white hover:bg-primary/20 transition-all duration-300"><i class="fab fa-linkedin-in text-xl"></i></a>
+                    <a href="https://github.com/imrankh46" target="_blank" class="w-12 h-12 rounded-xl glass-panel flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-all duration-300"><i class="fab fa-github text-xl"></i></a>
+                    <a href="https://huggingface.co/Imran1" target="_blank" class="w-12 h-12 rounded-xl glass-panel flex items-center justify-center text-slate-400 hover:text-white hover:bg-yellow-500/20 transition-all duration-300 text-xl">🤗</a>
+                    <a href="mailto:imranullahds@gmail.com" class="w-12 h-12 rounded-xl glass-panel flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-500/20 transition-all duration-300"><i class="fas fa-envelope text-xl"></i></a>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <a href="#projects" class="px-8 py-3 bg-white text-dark font-bold rounded-lg hover:bg-slate-200 transition">View Work</a>
-                    <a href="mailto:imranullahds@gmail.com" class="px-8 py-3 border border-slate-600 text-white font-bold rounded-lg hover:border-primary hover:text-primary transition">Get in Touch</a>
+                <div class="flex gap-4">
+                    <a href="#projects" class="px-8 py-4 rounded-xl bg-white text-dark font-bold hover:bg-slate-200 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)]">View Projects</a>
+                    <a href="#research" class="px-8 py-4 rounded-xl border border-slate-700 hover:border-primary hover:text-primary transition-all duration-300">Publications</a>
                 </div>
             </div>
-            
-            <div class="md:w-1/2 flex justify-center fade-in-up" style="animation-delay: 0.3s;">
-                <div class="relative w-64 h-64 md:w-80 md:h-80">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-full blur-lg opacity-50 animate-pulse"></div>
-                    <!-- REPLACE src below with your actual image path or URL -->
-                    <img src="https://ui-avatars.com/api/?name=Imran+Ullah&background=0D8ABC&color=fff&size=512" alt="Imran Ullah" class="relative w-full h-full object-cover rounded-full border-4 border-dark shadow-2xl">
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Research Publications Section -->
-    <section id="research" class="py-20 bg-dark">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-white mb-2"><i class="fas fa-book-open text-primary mr-2"></i> Research & Publications</h2>
-            <p class="text-slate-400 mb-12">My academic contributions to NLP, Medical AI, and Deep Learning.</p>
-
-            <div class="grid gap-6">
-                
-                <!-- Publication 1: Published -->
-                <div class="glass-card p-6 rounded-xl hover:border-primary/50 transition duration-300 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 bg-green-500/20 text-green-400 text-xs font-bold px-3 py-1 rounded-bl-lg border-b border-l border-green-500/20">
-                        PUBLISHED • 2024
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition">
-                        Pashto Poetry Generation: Deep Learning with Pre-trained Transformers for Low-resource Languages
-                    </h3>
-                    <p class="text-sm text-slate-400 mb-3 italic">
-                        <span class="text-white font-medium">Imran Ullah</span>, et al.
-                    </p>
-                    <p class="text-slate-300 mb-4 text-sm leading-relaxed">
-                        Published in <strong>PeerJ Computer Science</strong>. Investigated the generation of poetry in low-resource languages using fine-tuned transformer models, contributing to cultural preservation through AI.
-                    </p>
-                    <a href="https://peerj.com/articles/cs-2163/" target="_blank" class="inline-flex items-center text-sm font-semibold text-primary hover:text-blue-400">
-                        Read Paper <i class="fas fa-external-link-alt ml-2"></i>
-                    </a>
-                </div>
-
-                <!-- Publication 2: Under Review -->
-                <div class="glass-card p-6 rounded-xl hover:border-yellow-500/50 transition duration-300 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 bg-yellow-500/20 text-yellow-400 text-xs font-bold px-3 py-1 rounded-bl-lg border-b border-l border-yellow-500/20">
-                        UNDER REVIEW
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">
-                        When AI Meets Medicine: A Comprehensive Survey of Deep Learning, LLMs, and Multimodal Fusions
-                    </h3>
-                    <p class="text-sm text-slate-400 mb-3 italic">
-                        Ali Zafar, <span class="text-white font-medium">Imran Ullah</span>, et al. (CMPB-D-25-05288)
-                    </p>
-                    <p class="text-slate-300 mb-4 text-sm leading-relaxed">
-                        A comprehensive survey exploring the intersection of modern AI architectures and medication recommendation systems.
-                    </p>
-                </div>
-
-                <!-- Publication 3: In Progress -->
-                <div class="glass-card p-6 rounded-xl border-l-4 border-l-primary/50 relative">
-                    <div class="absolute top-0 right-0 bg-primary/20 text-blue-300 text-xs font-bold px-3 py-1 rounded-bl-lg">
-                        RESEARCH IN PROGRESS
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">PRIME-GATE: Personalized and Robust Intelligent Medication Engine</h3>
-                    <p class="text-xs text-slate-400 mb-2">Using Graph-Aware Temporal Encoding</p>
-                    <div class="h-1 w-full bg-slate-700 rounded-full mt-2 overflow-hidden">
-                        <div class="h-full bg-primary w-2/3"></div>
+            <!-- 3D Image Container -->
+            <div class="w-full md:w-1/2 flex justify-center perspective-container" data-aos="fade-left" data-aos-duration="1000">
+                <div class="relative w-80 h-80 md:w-[450px] md:h-[450px] animate-float">
+                    <!-- Glowing Ring -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-primary to-accent rounded-full blur-[60px] opacity-40"></div>
+                    
+                    <!-- Profile Image -->
+                    <!-- Using raw.githubusercontent to fetch image correctly -->
+                    <img src="https://raw.githubusercontent.com/imrankh46/imrankh46.github.io/main/profile%20image%20in%20blueb.png" 
+                         alt="Imran Ullah" 
+                         class="relative w-full h-full object-cover rounded-3xl border-2 border-white/10 shadow-2xl z-10 hover:scale-105 transition-transform duration-500"
+                         style="box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -right-6 z-20 glass-panel px-6 py-4 rounded-2xl flex items-center gap-3 animate-bounce" style="animation-duration: 3s;">
+                        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="text-sm font-bold">Open to Work</span>
                     </div>
                 </div>
-
-                <!-- Publication 4: In Progress -->
-                <div class="glass-card p-6 rounded-xl border-l-4 border-l-secondary/50 relative">
-                    <div class="absolute top-0 right-0 bg-secondary/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-bl-lg">
-                        RESEARCH IN PROGRESS
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">MIRA-Lite-MT: Lightweight Multimodal Instruction-Guided RAG</h3>
-                    <p class="text-xs text-slate-400 mb-2">Retrieval-Augmented Reasoning for Multimodal tasks</p>
-                    <div class="h-1 w-full bg-slate-700 rounded-full mt-2 overflow-hidden">
-                        <div class="h-full bg-secondary w-1/2"></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="py-16 bg-card border-y border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold text-white mb-8 text-center">Tech Stack & Expertise</h2>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <!-- Skill Group 1 -->
-                <div class="space-y-3">
-                    <div class="text-primary text-3xl mb-2"><i class="fas fa-brain"></i></div>
-                    <h3 class="text-white font-bold">LLM & GenAI</h3>
-                    <p class="text-sm text-slate-400">Fine-tuning (SFT, RLHF, DPO), RAG, Agents (CrewAI, LangGraph), vLLM</p>
-                </div>
-                <!-- Skill Group 2 -->
-                <div class="space-y-3">
-                    <div class="text-secondary text-3xl mb-2"><i class="fas fa-code"></i></div>
-                    <h3 class="text-white font-bold">Development</h3>
-                    <p class="text-sm text-slate-400">Python, C++, SQL, PyTorch, TensorFlow, Hugging Face</p>
-                </div>
-                <!-- Skill Group 3 -->
-                <div class="space-y-3">
-                    <div class="text-blue-400 text-3xl mb-2"><i class="fas fa-cloud"></i></div>
-                    <h3 class="text-white font-bold">MLOps & Cloud</h3>
-                    <p class="text-sm text-slate-400">AWS, Azure, Docker, Kubernetes, MLflow, DeepSpeed</p>
-                </div>
-                <!-- Skill Group 4 -->
-                <div class="space-y-3">
-                    <div class="text-purple-400 text-3xl mb-2"><i class="fas fa-eye"></i></div>
-                    <h3 class="text-white font-bold">Vision & Speech</h3>
-                    <p class="text-sm text-slate-400">YOLO, Roboflow, Whisper, TTS, CNNs</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Selected Projects -->
-    <section id="projects" class="py-20 bg-dark">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-white mb-12">Selected Projects</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Project 1 -->
-                <div class="bg-card rounded-xl p-6 border border-slate-700 hover:-translate-y-2 transition duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-bold text-white">Med-R1-v1</h3>
-                        <a href="https://huggingface.co/Imran1/Med-R1-v1" class="text-slate-400 hover:text-primary"><i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                    <p class="text-slate-400 text-sm mb-4">Medical Reasoning LLM fine-tuned for high accuracy in clinical QA and diagnostics.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-slate-700 rounded text-xs text-blue-300">HuggingFace</span>
-                        <span class="px-2 py-1 bg-slate-700 rounded text-xs text-blue-300">Fine-tuning</span>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="bg-card rounded-xl p-6 border border-slate-700 hover:-translate-y-2 transition duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-bold text-white">Synthetic Data & Qwen2.5</h3>
-                        <span class="text-slate-400"><i class="fas fa-database"></i></span>
-                    </div>
-                    <p class="text-slate-400 text-sm mb-4">Generated 1.3M-sample dataset across 22 languages for BUSN Bank (Korea) and fine-tuned Qwen2.5-32B. Reduced GPU costs by 40%.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-slate-700 rounded text-xs text-blue-300">vLLM</span>
-                        <span class="px-2 py-1 bg-slate-700 rounded text-xs text-blue-300">Enterprise AI</span>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="bg-card rounded-xl p-6 border border-slate-700 hover:-translate-y-2 transition duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-bold text-white">Hybrid Multimodal Agent</h3>
-                        <span class="text-slate-400"><i class="fas fa-robot"></i></span>
-                    </div>
-                    <p class="text-slate-400 text-sm mb-4">On-premise agent workflow for manufacturing processing PDFs, images, and Excel files with embedded images.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-slate-700 rounded text-xs text-blue-300">LangChain</span>
-                        <span class="px-2 py-1 bg-slate-700 rounded text-xs text-blue-300">Agents</span>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="bg-card rounded-xl p-6 border border-slate-700 hover:-translate-y-2 transition duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-bold text-white">DMR-FusionNet</h3>
-                        <span class="text-slate-400"><i class="fas fa-microscope"></i></span>
-                    </div>
-                    <p class="text-slate-400 text-sm mb-4">Medical Imaging model fusing DenseNet121, GoogLeNet, and MobileNetV2. Achieved 98.54% accuracy.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-slate-700 rounded text-xs text-blue-300">PyTorch</span>
-                        <span class="px-2 py-1 bg-slate-700 rounded text-xs text-blue-300">Computer Vision</span>
-                    </div>
-                </div>
-
-                 <!-- Project 5 -->
-                 <div class="bg-card rounded-xl p-6 border border-slate-700 hover:-translate-y-2 transition duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-bold text-white">Auto-Annotation Pipeline</h3>
-                        <span class="text-slate-400"><i class="fas fa-images"></i></span>
-                    </div>
-                    <p class="text-slate-400 text-sm mb-4">Developed using YOLOv11, processing ~25,000 images in 25 minutes for rapid dataset creation.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-slate-700 rounded text-xs text-blue-300">YOLO</span>
-                        <span class="px-2 py-1 bg-slate-700 rounded text-xs text-blue-300">Automation</span>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                 <div class="bg-card rounded-xl p-6 border border-slate-700 hover:-translate-y-2 transition duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-bold text-white">Pashto Audio Codec</h3>
-                        <span class="text-slate-400"><i class="fas fa-headphones"></i></span>
-                    </div>
-                    <p class="text-slate-400 text-sm mb-4">Evaluated SNAC audio codec for reconstruction quality on low-resource Pashto audio data.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-slate-700 rounded text-xs text-blue-300">Audio AI</span>
-                        <span class="px-2 py-1 bg-slate-700 rounded text-xs text-blue-300">Research</span>
-                    </div>
-                </div>
-
-            </div>
-            
-            <div class="mt-10 text-center">
-                <a href="https://github.com/imrankh46" class="inline-flex items-center text-primary font-bold hover:underline">See more on GitHub <i class="fas fa-arrow-right ml-2"></i></a>
             </div>
         </div>
     </section>
 
     <!-- Experience Timeline -->
-    <section id="experience" class="py-20 bg-card border-t border-slate-800">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-white mb-12 text-center">Professional Experience</h2>
+    <section id="experience" class="py-24 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Professional <span class="text-primary">Experience</span></h2>
+
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-primary via-accent to-transparent"></div>
+
+                <!-- Job 1 -->
+                <div class="mb-16 md:flex justify-between items-center w-full group">
+                    <div class="md:w-5/12 md:text-right pr-8 mb-4 md:mb-0" data-aos="fade-right">
+                        <h3 class="text-2xl font-bold text-white group-hover:text-primary transition-colors">Machine Learning Researcher</h3>
+                        <p class="text-accent font-medium mb-2">Grinda AI (Remote)</p>
+                        <div class="inline-block px-3 py-1 bg-slate-800 rounded-lg text-xs text-slate-400 border border-slate-700">March 2023 - Nov 2025</div>
+                    </div>
+                    
+                    <div class="absolute left-0 md:left-1/2 transform -translate-x-[5px] md:-translate-x-1/2 w-4 h-4 bg-dark border-2 border-primary rounded-full z-10 group-hover:bg-primary group-hover:scale-125 transition-all"></div>
+                    
+                    <div class="md:w-5/12 pl-8" data-aos="fade-left">
+                        <div class="glass-panel p-6 rounded-xl relative hover:border-primary/30 transition-all">
+                            <ul class="list-disc list-inside text-slate-400 text-sm space-y-2">
+                                <li>Fine-tuned <strong>Qwen2.5-32B</strong> & built custom evaluation frameworks.</li>
+                                <li>Deployed hybrid multimodal agents for manufacturing clients.</li>
+                                <li>Reduced GPU inference costs by <strong>40%</strong> using vLLM.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="md:flex justify-between items-center w-full group flex-row-reverse">
+                    <div class="md:w-5/12 md:text-left pl-8 mb-4 md:mb-0" data-aos="fade-left">
+                        <h3 class="text-2xl font-bold text-white group-hover:text-accent transition-colors">Freelance AI Engineer</h3>
+                        <p class="text-accent font-medium mb-2">Upwork (Global)</p>
+                        <div class="inline-block px-3 py-1 bg-slate-800 rounded-lg text-xs text-slate-400 border border-slate-700">Sep 2020 - Present</div>
+                    </div>
+                    
+                    <div class="absolute left-0 md:left-1/2 transform -translate-x-[5px] md:-translate-x-1/2 w-4 h-4 bg-dark border-2 border-accent rounded-full z-10 group-hover:bg-accent group-hover:scale-125 transition-all"></div>
+                    
+                    <div class="md:w-5/12 pr-8 text-right" data-aos="fade-right">
+                         <div class="glass-panel p-6 rounded-xl relative hover:border-accent/30 transition-all text-left md:text-right">
+                            <ul class="list-disc list-inside md:list-none text-slate-400 text-sm space-y-2">
+                                <li>Delivered 20+ projects in NLP, Vision, and GenAI.</li>
+                                <li>Built automated pipelines (YOLO) and prediction models.</li>
+                                <li>Expert in PyTorch, AWS SageMaker, and Hugging Face.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid (ALL PROJECTS) -->
+    <section id="projects" class="py-24 bg-dark/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-16 text-center" data-aos="zoom-in">Featured <span class="gradient-text">Projects</span></h2>
             
-            <div class="relative border-l border-slate-600 ml-4 md:ml-0 pl-8 md:pl-0">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <!-- Role 1 -->
-                <div class="mb-10 md:flex justify-between items-start w-full">
-                    <div class="hidden md:block w-5/12 text-right pr-8">
-                        <h3 class="text-xl font-bold text-white">Machine Learning Researcher</h3>
-                        <p class="text-primary font-medium">Grinda AI (Remote)</p>
-                        <p class="text-slate-500 text-sm mt-1">Mar 2023 – Nov 2025</p>
-                    </div>
-                    
-                    <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-dark"></div>
-                    
-                    <div class="md:w-5/12 md:pl-8">
-                        <!-- Mobile View Header -->
-                        <div class="md:hidden mb-2">
-                            <h3 class="text-xl font-bold text-white">Machine Learning Researcher</h3>
-                            <p class="text-primary font-medium">Grinda AI</p>
-                            <p class="text-slate-500 text-sm">Mar 2023 – Nov 2025</p>
+                <!-- Project 1: Med-R1 -->
+                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="0">
+                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-100 transition-opacity">
+                            <i class="fas fa-arrow-up-right-from-square text-primary text-xl"></i>
                         </div>
-                        <p class="text-slate-400 text-sm">
-                            Specialized in LLM fine-tuning and agentic workflows. Built synthetic datasets, optimized inference with vLLM, and developed multimodal pipelines for enterprise clients.
+                        <div class="mb-4 text-primary text-3xl"><i class="fas fa-heart-pulse"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Med-R1-v1 LLM</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            A specialized Medical Reasoning LLM available on HuggingFace. Fine-tuned for high-accuracy clinical diagnostics and Q&A.
                         </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-primary">HuggingFace</span>
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-primary">Fine-tuning</span>
+                        </div>
+                        <a href="https://huggingface.co/Imran1/Med-R1-v1" target="_blank" class="absolute inset-0 z-10"></a>
                     </div>
                 </div>
 
-                <!-- Role 2 -->
-                <div class="mb-10 md:flex justify-between items-start w-full">
-                    <div class="hidden md:block w-5/12 text-right pr-8">
-                        <h3 class="text-xl font-bold text-white">Freelance AI Engineer</h3>
-                        <p class="text-primary font-medium">Upwork</p>
-                        <p class="text-slate-500 text-sm mt-1">Sep 2020 – Present</p>
-                    </div>
-                    
-                    <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-secondary rounded-full border-4 border-dark"></div>
-                    
-                    <div class="md:w-5/12 md:pl-8">
-                         <div class="md:hidden mb-2">
-                            <h3 class="text-xl font-bold text-white">Freelance AI Engineer</h3>
-                            <p class="text-primary font-medium">Upwork</p>
-                            <p class="text-slate-500 text-sm">Sep 2020 – Present</p>
-                        </div>
-                        <p class="text-slate-400 text-sm">
-                            Delivering custom ML/DL solutions globally. Focus on Computer Vision, NLP, and deploying models to cloud environments (AWS/Azure).
+                <!-- Project 2: Synthetic Data -->
+                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
+                        <div class="mb-4 text-blue-400 text-3xl"><i class="fas fa-database"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Synthetic Data & Qwen2.5</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Generated 1.3M-sample dataset across 22 languages for BUSN Bank. Fine-tuned Qwen2.5-32B and deployed via vLLM, supporting 4,000+ users.
                         </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-blue-400">GenAI</span>
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-blue-400">vLLM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Hybrid Agent -->
+                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
+                        <div class="mb-4 text-purple-400 text-3xl"><i class="fas fa-robot"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Hybrid Multimodal Agent</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Designed an on-premise agent workflow for manufacturing. Processes PDFs, images, and Excel files with embedded visual data.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-purple-400">LangGraph</span>
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-purple-400">RAG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: DMR-FusionNet -->
+                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
+                        <div class="mb-4 text-emerald-400 text-3xl"><i class="fas fa-microscope"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">DMR-FusionNet</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Medical Imaging model fusing DenseNet121, GoogLeNet, and MobileNetV2. Achieved 98.54% test accuracy for white blood cell classification.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-emerald-400">PyTorch</span>
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-emerald-400">CV</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Alzheimer's -->
+                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="400">
+                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
+                        <div class="mb-4 text-rose-400 text-3xl"><i class="fas fa-brain"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Alzheimer’s Disease Classification</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Achieved 100% sensitivity in FTD classification using a fine-tuned AlexNet with subject-wise majority voting on MRI data.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-rose-400">Deep Learning</span>
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-rose-400">Medical</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: YOLO Pipeline -->
+                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="500">
+                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
+                        <div class="mb-4 text-yellow-400 text-3xl"><i class="fas fa-tags"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Auto Data Annotation</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Developed an automated pipeline using YOLOv11, processing 24,998 images in just 25 minutes to accelerate training data creation.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-yellow-400">YOLOv11</span>
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-yellow-400">Automation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 7: Battery Prediction -->
+                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="600">
+                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
+                        <div class="mb-4 text-orange-400 text-3xl"><i class="fas fa-car-battery"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Battery Life Prediction</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Built a regression model for lead-acid battery life prediction using voltage/current features. Achieved R² score of 0.881.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-orange-400">Regression</span>
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-orange-400">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 8: Speech-to-Text -->
+                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="700">
+                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
+                        <div class="mb-4 text-cyan-400 text-3xl"><i class="fas fa-microphone-lines"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Custom Speech-to-Text</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Developed a custom speech-to-text model from scratch, achieving a Word Error Rate (WER) of 41.2% on challenging audio data.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-cyan-400">Audio AI</span>
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-cyan-400">NLP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 9: Pashto Audio Codec -->
+                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="800">
+                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
+                        <div class="mb-4 text-pink-400 text-3xl"><i class="fas fa-wave-square"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Pashto Audio Codec</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            Evaluated the SNAC audio codec for reconstruction quality on low-resource Pashto audio data for cultural preservation.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-pink-400">Research</span>
+                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-pink-400">Audio</span>
+                        </div>
                     </div>
                 </div>
 
@@ -388,70 +402,164 @@
         </div>
     </section>
 
-    <!-- Recent Blogs -->
-    <section id="blog" class="py-20 bg-dark">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-white mb-8 text-center">Recent Technical Writing</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <a href="https://medium.com/@imranullahds/accelerating-long-sequence-transformers-with-ring-vs-striped-attention-on-multiple-gpus-4615da572af1" target="_blank" class="block group">
-                    <div class="bg-card p-6 rounded-lg border border-slate-700 group-hover:border-primary transition h-full">
-                        <h3 class="text-lg font-bold text-white group-hover:text-primary mb-2">Accelerating Long-Sequence Transformers</h3>
-                        <p class="text-slate-400 text-sm">Deep dive into Ring vs. Striped Attention on Multiple GPUs.</p>
+    <!-- Research Publications -->
+    <section id="research" class="py-24">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-16">Scientific <span class="text-primary">Publications</span></h2>
+
+            <div class="space-y-6">
+                
+                <!-- Pub 1 -->
+                <div class="glass-panel p-8 rounded-xl border border-slate-800 relative overflow-hidden group hover:-translate-y-1 transition-transform" data-aos="fade-up">
+                    <div class="absolute top-0 right-0 bg-green-500/20 text-green-400 text-xs font-bold px-4 py-1.5 rounded-bl-xl border-b border-l border-green-500/20">PUBLISHED • PeerJ</div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Pashto Poetry Generation: Deep Learning with Pre-trained Transformers</h3>
+                    <p class="text-slate-400 text-sm mb-4 italic">Imran Ullah, et al. (2024)</p>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Investigated the generation of poetry in low-resource languages using fine-tuned transformer models, contributing to cultural preservation through AI.
+                    </p>
+                    <a href="https://peerj.com/articles/cs-2163/" target="_blank" class="inline-flex items-center text-sm font-semibold text-primary hover:underline">Read Paper <i class="fas fa-external-link-alt ml-2"></i></a>
+                </div>
+
+                <!-- Pub 2 -->
+                <div class="glass-panel p-8 rounded-xl border border-slate-800 relative overflow-hidden group hover:-translate-y-1 transition-transform" data-aos="fade-up">
+                    <div class="absolute top-0 right-0 bg-yellow-500/20 text-yellow-400 text-xs font-bold px-4 py-1.5 rounded-bl-xl border-b border-l border-yellow-500/20">UNDER REVIEW</div>
+                    <h3 class="text-xl font-bold text-white mb-2">When AI Meets Medicine: A Comprehensive Survey</h3>
+                    <p class="text-slate-400 text-sm mb-4 italic">Ali Zafar, Imran Ullah, et al. (CMPB-D-25-05288)</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        A comprehensive survey of Deep Learning, LLMs, and Multimodal Fusions in Medication Recommendation systems.
+                    </p>
+                </div>
+
+                <!-- Pub 3 & 4 (Grid for Work in Progress) -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass-panel p-6 rounded-xl border border-slate-800 border-l-4 border-l-blue-500" data-aos="fade-up">
+                        <div class="text-xs font-bold text-blue-400 mb-2 uppercase tracking-wide">Research in Progress</div>
+                        <h3 class="text-lg font-bold text-white mb-2">PRIME-GATE</h3>
+                        <p class="text-slate-500 text-xs">Personalized and Robust Intelligent Medication Engine Using Graph-Aware Temporal Encoding.</p>
                     </div>
-                </a>
-                <a href="https://medium.com/@imranullahds/detailed-breakdown-of-the-math-formulas-dataset-examples-and-training-methods-from-the-deepseek-b16dbc8c7c57" target="_blank" class="block group">
-                    <div class="bg-card p-6 rounded-lg border border-slate-700 group-hover:border-primary transition h-full">
-                        <h3 class="text-lg font-bold text-white group-hover:text-primary mb-2">DeepSeek R1 Paper Breakdown</h3>
-                        <p class="text-slate-400 text-sm">Math formulas, datasets, and training methods explained.</p>
+                    <div class="glass-panel p-6 rounded-xl border border-slate-800 border-l-4 border-l-purple-500" data-aos="fade-up">
+                        <div class="text-xs font-bold text-purple-400 mb-2 uppercase tracking-wide">Research in Progress</div>
+                        <h3 class="text-lg font-bold text-white mb-2">MIRA-Lite-MT</h3>
+                        <p class="text-slate-500 text-xs">Lightweight Multimodal Instruction-Guided Retrieval-Augmented Reasoning.</p>
                     </div>
-                </a>
-                <a href="https://medium.com/@imranullahds/unlocking-efficiency-a-deep-dive-into-medical-model-fine-tuning-with-unsloth-trl-and-peft-066358fc197b" target="_blank" class="block group">
-                    <div class="bg-card p-6 rounded-lg border border-slate-700 group-hover:border-primary transition h-full">
-                        <h3 class="text-lg font-bold text-white group-hover:text-primary mb-2">Efficient Medical Model Fine-Tuning</h3>
-                        <p class="text-slate-400 text-sm">Using Unsloth, TRL, and PEFT for optimization.</p>
-                    </div>
-                </a>
-                <a href="https://medium.com/@imranullahds/openchat-3-5-a-deep-dive-into-sft-fine-tuning-with-unsloth-0d9eba710571" target="_blank" class="block group">
-                    <div class="bg-card p-6 rounded-lg border border-slate-700 group-hover:border-primary transition h-full">
-                        <h3 class="text-lg font-bold text-white group-hover:text-primary mb-2">OpenChat 3.5 Fine-Tuning</h3>
-                        <p class="text-slate-400 text-sm">A deep dive into SFT with Unsloth.</p>
-                    </div>
-                </a>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Footer / Contact -->
-    <footer id="contact" class="bg-dark border-t border-slate-800 pt-16 pb-8">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold text-white mb-6">Let's Collaborate</h2>
-            <p class="text-slate-400 mb-8 max-w-xl mx-auto">
-                I am currently open to research collaborations and engineering roles in Generative AI and NLP.
+    <!-- Tech Stack Scroller (Infinite) -->
+    <section class="py-12 bg-black border-y border-slate-800 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 mb-6">
+            <p class="text-center text-slate-500 text-sm uppercase tracking-widest font-semibold">Technologies I use</p>
+        </div>
+        <div class="relative flex overflow-x-hidden group">
+            <div class="py-4 animate-marquee whitespace-nowrap flex space-x-12 px-12">
+                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fab fa-python text-yellow-400"></i> Python</span>
+                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fas fa-fire text-orange-500"></i> PyTorch</span>
+                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fas fa-cube text-blue-400"></i> TensorFlow</span>
+                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2">🤗 Hugging Face</span>
+                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fas fa-server text-green-400"></i> vLLM</span>
+                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2">🦜🔗 LangChain</span>
+                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fab fa-aws text-orange-400"></i> AWS</span>
+                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fab fa-docker text-blue-500"></i> Docker</span>
+                <!-- Duplicate for loop -->
+                 <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fab fa-python text-yellow-400"></i> Python</span>
+                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fas fa-fire text-orange-500"></i> PyTorch</span>
+                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fas fa-cube text-blue-400"></i> TensorFlow</span>
+                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2">🤗 Hugging Face</span>
+                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fas fa-server text-green-400"></i> vLLM</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-dark pt-20 pb-10">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="font-heading text-4xl font-bold text-white mb-6">Let's Build the Future of AI</h2>
+            <p class="text-slate-400 mb-10 text-lg">
+                Always open to discussing LLM architectures, Research Collaborations, or Coffee.
             </p>
             
-            <a href="mailto:imranullahds@gmail.com" class="inline-block bg-primary hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition mb-12">
-                <i class="fas fa-envelope mr-2"></i> imranullahds@gmail.com
-            </a>
-
-            <!-- Buy Me A Coffee -->
-            <div class="mb-12">
-                 <a href="https://buymeacoffee.com/imranullahds" target="_blank" class="inline-flex items-center px-4 py-2 bg-[#FFDD00] text-black font-bold rounded-lg hover:opacity-90 transition">
-                    <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee" class="h-6 w-6 mr-2">
-                    Buy me a coffee
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-16">
+                <a href="mailto:imranullahds@gmail.com" class="px-8 py-4 bg-primary rounded-full text-white font-bold text-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] transition-all">
+                    <i class="fas fa-paper-plane mr-2"></i> imranullahds@gmail.com
+                </a>
+                <a href="https://buymeacoffee.com/imranullahds" target="_blank" class="px-8 py-4 bg-[#FFDD00] text-black rounded-full font-bold text-lg hover:brightness-110 transition-all">
+                    <i class="fas fa-coffee mr-2"></i> Buy me a coffee
                 </a>
             </div>
 
-            <div class="flex justify-center space-x-8 mb-8 text-2xl text-slate-500">
-                <a href="https://linkedin.com/in/imranullahds" class="hover:text-white transition"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/imrankh46" class="hover:text-white transition"><i class="fab fa-github"></i></a>
-                <a href="https://x.com/imran_ds" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-slate-600 text-sm">© 2025 Imran Ullah. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="https://linkedin.com/in/imranullahds" class="text-slate-500 hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="https://github.com/imrankh46" class="text-slate-500 hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
+                    <a href="https://x.com/imran_ds" class="text-slate-500 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="https://medium.com/@imranullahds" class="text-slate-500 hover:text-white transition"><i class="fab fa-medium text-xl"></i></a>
+                </div>
             </div>
-            
-            <p class="text-slate-600 text-sm">
-                &copy; 2025 Imran Ullah. Built with Tailwind CSS.
-            </p>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS Animation Library
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+        });
+
+        // 3D Tilt Effect Logic for Cards
+        const cards = document.querySelectorAll('.tilt-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // x position within the element.
+                const y = e.clientY - rect.top;  // y position within the element.
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -5; // Rotate X axis (vertical tilt)
+                const rotateY = ((x - centerX) / centerX) * 5;  // Rotate Y axis (horizontal tilt)
+
+                // Apply the transform to the inner glass panel
+                const inner = card.querySelector('.glass-panel');
+                inner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                const inner = card.querySelector('.glass-panel');
+                inner.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+            });
+        });
+
+        // Infinite Marquee Animation Config
+        tailwind.config.theme.extend.animation = {
+            ...tailwind.config.theme.extend.animation,
+            marquee: 'marquee 25s linear infinite',
+        };
+        tailwind.config.theme.extend.keyframes = {
+            ...tailwind.config.theme.extend.keyframes,
+            marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-50%)' },
+            }
+        };
+    </script>
+    
+    <style>
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
+        }
+    </style>
 </body>
 </html>
