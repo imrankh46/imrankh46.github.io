@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imran Ullah | AI Researcher & ML Engineer</title>
-    <meta name="description" content="Portfolio of Imran Ullah - Expert in LLMs, NLP, and Computer Vision.">
-
+    <title>Imran Ullah | AI Researcher & Engineer</title>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts (Outfit for modern headings, Inter for body) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
+    <!-- Fonts: Rajdhani (Tech), Inter (Body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- AOS Animation Library -->
+    
+    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <script>
@@ -24,31 +23,16 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        heading: ['Outfit', 'sans-serif'],
+                        mono: ['Rajdhani', 'sans-serif'], // Tech font
                     },
                     colors: {
-                        // Matching the "Blue" from your profile image description
-                        primary: '#3b82f6', 
-                        accent: '#06b6d4', 
-                        dark: '#0B0F19', 
-                        card: '#111827', 
-                        'card-hover': '#1F2937'
+                        holo: '#00f3ff',     // Cyan Neon
+                        holo2: '#bc13fe',    // Purple Neon
+                        dark: '#050505',     // Deep Black
+                        glass: 'rgba(10, 20, 30, 0.6)'
                     },
-                    animation: {
-                        'blob': 'blob 7s infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        }
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
                     }
                 }
             }
@@ -56,195 +40,166 @@
     </script>
 
     <style>
-        /* Custom 3D & Glass Styles */
         body {
-            background-color: #0B0F19;
-            color: #e2e8f0;
+            background-color: #050505;
+            color: #cbd5e1;
             overflow-x: hidden;
         }
 
-        /* The 3D Tilt Card Base */
-        .tilt-card {
-            transform-style: preserve-3d;
-            transform: perspective(1000px);
-            transition: transform 0.1s ease;
+        /* Holographic Background Grid */
+        .cyber-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            z-index: -1;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
+
+        /* Holographic Card Style */
+        .holo-card {
+            background: rgba(10, 15, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .holo-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .holo-card:hover::before {
+            left: 100%;
+        }
+
+        .holo-card:hover {
+            border-color: #00f3ff;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Text Effects */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
         }
         
-        .tilt-card-inner {
-            transform: translateZ(20px);
-        }
-
-        .glass-nav {
-            background: rgba(11, 15, 25, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .glass-panel {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #60A5FA 0%, #2DD4BF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0B0F19;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #374151;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3b82f6;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #00f3ff; border-radius: 3px; }
     </style>
 </head>
-<body class="antialiased selection:bg-primary selection:text-white">
+<body class="selection:bg-holo selection:text-black">
 
-    <!-- Background Glow Effects -->
-    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
-        <div class="absolute top-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
-    </div>
+    <div class="cyber-grid"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav">
+    <nav class="fixed w-full z-50 border-b border-white/10 bg-dark/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0 font-heading font-bold text-2xl tracking-wide">
-                    IMRAN<span class="text-primary">.AI</span>
+            <div class="flex items-center justify-between h-16">
+                <div class="font-mono text-2xl font-bold tracking-widest text-white">
+                    IMRAN<span class="text-holo">.EXE</span>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="hover:text-primary transition-colors duration-300 font-medium text-sm">Home</a>
-                        <a href="#projects" class="hover:text-primary transition-colors duration-300 font-medium text-sm">Projects</a>
-                        <a href="#experience" class="hover:text-primary transition-colors duration-300 font-medium text-sm">Experience</a>
-                        <a href="#research" class="hover:text-primary transition-colors duration-300 font-medium text-sm">Research</a>
-                        <a href="#contact" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-blue-600 text-white font-medium text-sm hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300">Contact Me</a>
-                    </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="font-mono text-sm hover:text-holo transition"> // HOME</a>
+                    <a href="#experience" class="font-mono text-sm hover:text-holo transition"> // EXP</a>
+                    <a href="#skills" class="font-mono text-sm hover:text-holo transition"> // SKILLS</a>
+                    <a href="#projects" class="font-mono text-sm hover:text-holo transition"> // PROJECTS</a>
+                    <a href="#research" class="font-mono text-sm hover:text-holo transition"> // RESEARCH</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center pt-20 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row items-center gap-12">
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16 relative">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
             
             <!-- Text Content -->
-            <div class="w-full md:w-1/2 z-10" data-aos="fade-right" data-aos-duration="1000">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold tracking-wide uppercase mb-6">
-                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-                    Available for Collaboration
+            <div data-aos="fade-right">
+                <div class="inline-block border border-holo/50 bg-holo/10 px-4 py-1 rounded mb-6 font-mono text-holo text-sm tracking-widest">
+                    SYSTEM STATUS: ONLINE
                 </div>
-                
-                <h1 class="font-heading text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-                    Hi, I'm <br>
-                    <span class="gradient-text">Imran Ullah</span>
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 font-mono leading-tight">
+                    IMRAN ULLAH<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-holo to-holo2 neon-text">AI RESEARCHER</span>
                 </h1>
-                
-                <p class="text-xl text-slate-400 mb-8 max-w-lg leading-relaxed">
-                    Machine Learning Engineer & Researcher specializing in 
-                    <span class="text-white font-semibold">LLM Fine-tuning</span>, 
-                    <span class="text-white font-semibold">Multi-GPU Training</span>, and 
-                    <span class="text-white font-semibold">Agentic AI Systems</span>.
+                <p class="text-slate-400 text-lg mb-8 border-l-2 border-holo pl-4 max-w-lg">
+                    Specializing in <strong class="text-white">LLM Fine-tuning</strong>, 
+                    <strong class="text-white">Multi-GPU Training</strong>, and 
+                    <strong class="text-white">Agentic Systems</strong>. 
+                    Building the next generation of intelligent machines.
                 </p>
-
-                <div class="flex flex-wrap gap-4 mb-10">
-                    <a href="https://linkedin.com/in/imranullahds" target="_blank" class="w-12 h-12 rounded-xl glass-panel flex items-center justify-center text-slate-400 hover:text-white hover:bg-primary/20 transition-all duration-300"><i class="fab fa-linkedin-in text-xl"></i></a>
-                    <a href="https://github.com/imrankh46" target="_blank" class="w-12 h-12 rounded-xl glass-panel flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-all duration-300"><i class="fab fa-github text-xl"></i></a>
-                    <a href="https://huggingface.co/Imran1" target="_blank" class="w-12 h-12 rounded-xl glass-panel flex items-center justify-center text-slate-400 hover:text-white hover:bg-yellow-500/20 transition-all duration-300 text-xl">🤗</a>
-                    <a href="mailto:imranullahds@gmail.com" class="w-12 h-12 rounded-xl glass-panel flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-500/20 transition-all duration-300"><i class="fas fa-envelope text-xl"></i></a>
-                </div>
-
                 <div class="flex gap-4">
-                    <a href="#projects" class="px-8 py-4 rounded-xl bg-white text-dark font-bold hover:bg-slate-200 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)]">View Projects</a>
-                    <a href="#research" class="px-8 py-4 rounded-xl border border-slate-700 hover:border-primary hover:text-primary transition-all duration-300">Publications</a>
+                    <a href="#projects" class="px-8 py-3 bg-holo text-black font-bold font-mono hover:bg-white transition skew-x-[-10deg]">VIEW MODULES</a>
+                    <a href="https://github.com/imrankh46" target="_blank" class="px-8 py-3 border border-white text-white font-mono hover:border-holo hover:text-holo transition skew-x-[-10deg]">GITHUB_ACCESS</a>
                 </div>
             </div>
 
-            <!-- 3D Image Container -->
-            <div class="w-full md:w-1/2 flex justify-center perspective-container" data-aos="fade-left" data-aos-duration="1000">
-                <div class="relative w-80 h-80 md:w-[450px] md:h-[450px] animate-float">
-                    <!-- Glowing Ring -->
-                    <div class="absolute inset-0 bg-gradient-to-tr from-primary to-accent rounded-full blur-[60px] opacity-40"></div>
+            <!-- Holographic Image Frame -->
+            <div class="relative flex justify-center" data-aos="zoom-in">
+                <div class="relative w-80 h-80 md:w-96 md:h-96">
+                    <!-- Rotating Rings -->
+                    <div class="absolute inset-0 border border-holo/30 rounded-full animate-[spin_10s_linear_infinite]"></div>
+                    <div class="absolute inset-4 border border-holo2/30 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
                     
-                    <!-- Profile Image -->
-                    <!-- Using raw.githubusercontent to fetch image correctly -->
+                    <!-- Image -->
                     <img src="https://raw.githubusercontent.com/imrankh46/imrankh46.github.io/main/profile%20image%20in%20blueb.png" 
-                         alt="Imran Ullah" 
-                         class="relative w-full h-full object-cover rounded-3xl border-2 border-white/10 shadow-2xl z-10 hover:scale-105 transition-transform duration-500"
-                         style="box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
-                    
-                    <!-- Floating Badge -->
-                    <div class="absolute -bottom-6 -right-6 z-20 glass-panel px-6 py-4 rounded-2xl flex items-center gap-3 animate-bounce" style="animation-duration: 3s;">
-                        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                        <span class="text-sm font-bold">Open to Work</span>
-                    </div>
+                         class="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] object-cover rounded-full border-2 border-holo shadow-[0_0_50px_rgba(0,243,255,0.3)] hover:scale-105 transition duration-500"
+                         alt="Imran Profile">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Timeline -->
-    <section id="experience" class="py-24 relative">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Professional <span class="text-primary">Experience</span></h2>
+    <!-- Experience Section (Moving Top to Bottom) -->
+    <section id="experience" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-mono font-bold text-white mb-12 flex items-center">
+                <span class="text-holo mr-4">></span> EXPERIENCE LOG
+            </h2>
 
-            <div class="relative">
-                <!-- Vertical Line -->
-                <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-primary via-accent to-transparent"></div>
-
-                <!-- Job 1 -->
-                <div class="mb-16 md:flex justify-between items-center w-full group">
-                    <div class="md:w-5/12 md:text-right pr-8 mb-4 md:mb-0" data-aos="fade-right">
-                        <h3 class="text-2xl font-bold text-white group-hover:text-primary transition-colors">Machine Learning Researcher</h3>
-                        <p class="text-accent font-medium mb-2">Grinda AI (Remote)</p>
-                        <div class="inline-block px-3 py-1 bg-slate-800 rounded-lg text-xs text-slate-400 border border-slate-700">March 2023 - Nov 2025</div>
-                    </div>
-                    
-                    <div class="absolute left-0 md:left-1/2 transform -translate-x-[5px] md:-translate-x-1/2 w-4 h-4 bg-dark border-2 border-primary rounded-full z-10 group-hover:bg-primary group-hover:scale-125 transition-all"></div>
-                    
-                    <div class="md:w-5/12 pl-8" data-aos="fade-left">
-                        <div class="glass-panel p-6 rounded-xl relative hover:border-primary/30 transition-all">
-                            <ul class="list-disc list-inside text-slate-400 text-sm space-y-2">
-                                <li>Fine-tuned <strong>Qwen2.5-32B</strong> & built custom evaluation frameworks.</li>
-                                <li>Deployed hybrid multimodal agents for manufacturing clients.</li>
-                                <li>Reduced GPU inference costs by <strong>40%</strong> using vLLM.</li>
-                            </ul>
+            <div class="space-y-12 border-l border-white/10 ml-4 md:ml-0 pl-8 md:pl-0">
+                
+                <!-- Experience 1 -->
+                <div class="relative md:pl-8" data-aos="fade-down" data-aos-duration="1000">
+                    <div class="absolute -left-[5px] top-0 w-3 h-3 bg-holo rounded-full shadow-[0_0_10px_#00f3ff]"></div>
+                    <div class="holo-card p-6 rounded-lg">
+                        <div class="flex flex-col md:flex-row justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white">Machine Learning Researcher</h3>
+                            <span class="font-mono text-holo">Mar 2023 – Nov 2025</span>
                         </div>
+                        <p class="text-sm text-slate-400 mb-4 font-mono">Grinda AI (Remote)</p>
+                        <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm">
+                            <li>Generated 1.3M-sample synthetic dataset for BUSN Bank.</li>
+                            <li>Fine-tuned <strong>Qwen2.5-32B</strong> and deployed via vLLM.</li>
+                            <li>Designed hybrid multimodal agent workflows for manufacturing.</li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- Job 2 -->
-                <div class="md:flex justify-between items-center w-full group flex-row-reverse">
-                    <div class="md:w-5/12 md:text-left pl-8 mb-4 md:mb-0" data-aos="fade-left">
-                        <h3 class="text-2xl font-bold text-white group-hover:text-accent transition-colors">Freelance AI Engineer</h3>
-                        <p class="text-accent font-medium mb-2">Upwork (Global)</p>
-                        <div class="inline-block px-3 py-1 bg-slate-800 rounded-lg text-xs text-slate-400 border border-slate-700">Sep 2020 - Present</div>
-                    </div>
-                    
-                    <div class="absolute left-0 md:left-1/2 transform -translate-x-[5px] md:-translate-x-1/2 w-4 h-4 bg-dark border-2 border-accent rounded-full z-10 group-hover:bg-accent group-hover:scale-125 transition-all"></div>
-                    
-                    <div class="md:w-5/12 pr-8 text-right" data-aos="fade-right">
-                         <div class="glass-panel p-6 rounded-xl relative hover:border-accent/30 transition-all text-left md:text-right">
-                            <ul class="list-disc list-inside md:list-none text-slate-400 text-sm space-y-2">
-                                <li>Delivered 20+ projects in NLP, Vision, and GenAI.</li>
-                                <li>Built automated pipelines (YOLO) and prediction models.</li>
-                                <li>Expert in PyTorch, AWS SageMaker, and Hugging Face.</li>
-                            </ul>
+                <!-- Experience 2 -->
+                <div class="relative md:pl-8" data-aos="fade-down" data-aos-delay="200" data-aos-duration="1000">
+                    <div class="absolute -left-[5px] top-0 w-3 h-3 bg-holo2 rounded-full shadow-[0_0_10px_#bc13fe]"></div>
+                    <div class="holo-card p-6 rounded-lg border-holo2/30">
+                        <div class="flex flex-col md:flex-row justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white">Freelance AI Engineer</h3>
+                            <span class="font-mono text-holo2">Sep 2020 – Present</span>
                         </div>
+                        <p class="text-sm text-slate-400 mb-4 font-mono">Upwork (Remote)</p>
+                        <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm">
+                            <li>Developed custom speech-to-text models (WER 41.2%).</li>
+                            <li>Created automated data annotation pipelines using YOLOv11.</li>
+                            <li>Built medical imaging models achieving 98.54% accuracy.</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -252,314 +207,253 @@
         </div>
     </section>
 
-    <!-- Projects Grid (ALL PROJECTS) -->
-    <section id="projects" class="py-24 bg-dark/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-16 text-center" data-aos="zoom-in">Featured <span class="gradient-text">Projects</span></h2>
-            
+    <!-- Skills Section (Animating from Right) -->
+    <section id="skills" class="py-20 bg-white/5 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-mono font-bold text-white mb-12 text-right">
+                SKILL MATRIX <span class="text-holo"><</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Group 1: LLM & GenAI -->
+                <div class="space-y-4 text-right" data-aos="fade-left" data-aos-delay="0">
+                    <h3 class="text-holo font-mono text-xl mb-4">GENERATIVE AI & LLMS</h3>
+                    <div class="flex flex-wrap gap-2 justify-end">
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">Fine-Tuning (SFT/RLHF/DPO)</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">RAG</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">Transformers</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">Hugging Face</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">LangChain</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">LlamaIndex</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">CrewAI</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">vLLM</span>
+                    </div>
+                </div>
+
+                <!-- Group 2: Core ML/DL -->
+                <div class="space-y-4 text-right" data-aos="fade-left" data-aos-delay="100">
+                    <h3 class="text-holo2 font-mono text-xl mb-4">CORE DEEP LEARNING</h3>
+                    <div class="flex flex-wrap gap-2 justify-end">
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">PyTorch</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">TensorFlow</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">DeepSpeed</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">FSDP / DDP</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">DGL (Graphs)</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">Ray</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">Numpy/Pandas</span>
+                    </div>
+                </div>
+
+                <!-- Group 3: Languages & Cloud -->
+                <div class="space-y-4 text-right" data-aos="fade-left" data-aos-delay="200">
+                    <h3 class="text-blue-400 font-mono text-xl mb-4">LANGUAGES & CLOUD</h3>
+                    <div class="flex flex-wrap gap-2 justify-end">
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">Python</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">C++</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">SQL</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">AWS</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">SageMaker</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">Docker</span>
+                    </div>
+                </div>
+
+                <!-- Group 4: Vision & Audio -->
+                <div class="space-y-4 text-right" data-aos="fade-left" data-aos-delay="300">
+                    <h3 class="text-green-400 font-mono text-xl mb-4">VISION & AUDIO</h3>
+                    <div class="flex flex-wrap gap-2 justify-end">
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">YOLO</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">Roboflow</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">Whisper</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">TTS</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-sm text-white">Gradio</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid (3D Tilt) -->
+    <section id="projects" class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-mono font-bold text-white mb-12 text-center">
+                <span class="text-holo">[</span> PROJECT ARCHIVE <span class="text-holo">]</span>
+            </h2>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Project 1: Med-R1 -->
-                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="0">
-                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-100 transition-opacity">
-                            <i class="fas fa-arrow-up-right-from-square text-primary text-xl"></i>
-                        </div>
-                        <div class="mb-4 text-primary text-3xl"><i class="fas fa-heart-pulse"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Med-R1-v1 LLM</h3>
-                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                            A specialized Medical Reasoning LLM available on HuggingFace. Fine-tuned for high-accuracy clinical diagnostics and Q&A.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-primary">HuggingFace</span>
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-primary">Fine-tuning</span>
-                        </div>
-                        <a href="https://huggingface.co/Imran1/Med-R1-v1" target="_blank" class="absolute inset-0 z-10"></a>
+
+                <!-- 1. Med-R1 -->
+                <div class="tilt-card holo-card p-6 rounded-xl group" data-aos="fade-up">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-heart-pulse text-3xl text-holo"></i>
+                        <a href="https://huggingface.co/Imran1/Med-R1-v1" target="_blank" class="text-slate-400 hover:text-white"><i class="fas fa-external-link-alt"></i></a>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Med-R1-v1 LLM</h3>
+                    <p class="text-sm text-slate-400 mb-4">Specialized Medical Reasoning LLM. Fine-tuned for clinical diagnostics and Q&A.</p>
                 </div>
 
-                <!-- Project 2: Synthetic Data -->
-                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="100">
-                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
-                        <div class="mb-4 text-blue-400 text-3xl"><i class="fas fa-database"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Synthetic Data & Qwen2.5</h3>
-                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                            Generated 1.3M-sample dataset across 22 languages for BUSN Bank. Fine-tuned Qwen2.5-32B and deployed via vLLM, supporting 4,000+ users.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-blue-400">GenAI</span>
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-blue-400">vLLM</span>
-                        </div>
+                <!-- 2. Synthetic Data -->
+                <div class="tilt-card holo-card p-6 rounded-xl group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-database text-3xl text-holo2"></i>
+                        <span class="text-xs border border-holo2 text-holo2 px-2 py-0.5 rounded">ENTERPRISE</span>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Synthetic Data & Qwen2.5</h3>
+                    <p class="text-sm text-slate-400 mb-4">1.3M-sample dataset (22 languages). Fine-tuned Qwen2.5-32B & vLLM deployment.</p>
                 </div>
 
-                <!-- Project 3: Hybrid Agent -->
-                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="200">
-                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
-                        <div class="mb-4 text-purple-400 text-3xl"><i class="fas fa-robot"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Hybrid Multimodal Agent</h3>
-                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                            Designed an on-premise agent workflow for manufacturing. Processes PDFs, images, and Excel files with embedded visual data.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-purple-400">LangGraph</span>
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-purple-400">RAG</span>
-                        </div>
+                <!-- 3. Hybrid Agent -->
+                <div class="tilt-card holo-card p-6 rounded-xl group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-robot text-3xl text-blue-400"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Hybrid Multimodal Agent</h3>
+                    <p class="text-sm text-slate-400 mb-4">On-premise agent workflow for manufacturing. Processes PDFs, images, and Excel.</p>
                 </div>
 
-                <!-- Project 4: DMR-FusionNet -->
-                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="300">
-                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
-                        <div class="mb-4 text-emerald-400 text-3xl"><i class="fas fa-microscope"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">DMR-FusionNet</h3>
-                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                            Medical Imaging model fusing DenseNet121, GoogLeNet, and MobileNetV2. Achieved 98.54% test accuracy for white blood cell classification.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-emerald-400">PyTorch</span>
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-emerald-400">CV</span>
-                        </div>
+                <!-- 4. DMR-FusionNet -->
+                <div class="tilt-card holo-card p-6 rounded-xl group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-microscope text-3xl text-green-400"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-2">DMR-FusionNet</h3>
+                    <p class="text-sm text-slate-400 mb-4">Medical Imaging model (DenseNet, GoogLeNet, MobileNetV2). 98.54% accuracy.</p>
                 </div>
 
-                <!-- Project 5: Alzheimer's -->
-                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="400">
-                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
-                        <div class="mb-4 text-rose-400 text-3xl"><i class="fas fa-brain"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Alzheimer’s Disease Classification</h3>
-                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                            Achieved 100% sensitivity in FTD classification using a fine-tuned AlexNet with subject-wise majority voting on MRI data.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-rose-400">Deep Learning</span>
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-rose-400">Medical</span>
-                        </div>
+                <!-- 5. Alzheimer's -->
+                <div class="tilt-card holo-card p-6 rounded-xl group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-brain text-3xl text-pink-400"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Alzheimer’s Disease</h3>
+                    <p class="text-sm text-slate-400 mb-4">100% sensitivity in FTD classification using fine-tuned AlexNet on MRI data.</p>
                 </div>
 
-                <!-- Project 6: YOLO Pipeline -->
-                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="500">
-                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
-                        <div class="mb-4 text-yellow-400 text-3xl"><i class="fas fa-tags"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Auto Data Annotation</h3>
-                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                            Developed an automated pipeline using YOLOv11, processing 24,998 images in just 25 minutes to accelerate training data creation.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-yellow-400">YOLOv11</span>
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-yellow-400">Automation</span>
-                        </div>
+                <!-- 6. Battery Prediction -->
+                <div class="tilt-card holo-card p-6 rounded-xl group" data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-car-battery text-3xl text-yellow-400"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Battery Life Prediction</h3>
+                    <p class="text-sm text-slate-400 mb-4">Regression model for lead-acid battery life prediction. R² score of 0.881.</p>
                 </div>
 
-                <!-- Project 7: Battery Prediction -->
-                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="600">
-                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
-                        <div class="mb-4 text-orange-400 text-3xl"><i class="fas fa-car-battery"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Battery Life Prediction</h3>
-                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                            Built a regression model for lead-acid battery life prediction using voltage/current features. Achieved R² score of 0.881.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-orange-400">Regression</span>
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-orange-400">Analytics</span>
-                        </div>
+                <!-- 7. Auto Data Annotation -->
+                <div class="tilt-card holo-card p-6 rounded-xl group" data-aos="fade-up" data-aos-delay="600">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-tags text-3xl text-orange-400"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Auto Data Annotation</h3>
+                    <p class="text-sm text-slate-400 mb-4">Pipeline using YOLOv11. Processed 24,998 images in 25 minutes.</p>
                 </div>
 
-                <!-- Project 8: Speech-to-Text -->
-                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="700">
-                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
-                        <div class="mb-4 text-cyan-400 text-3xl"><i class="fas fa-microphone-lines"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Custom Speech-to-Text</h3>
-                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                            Developed a custom speech-to-text model from scratch, achieving a Word Error Rate (WER) of 41.2% on challenging audio data.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-cyan-400">Audio AI</span>
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-cyan-400">NLP</span>
-                        </div>
+                <!-- 8. Speech-to-Text -->
+                <div class="tilt-card holo-card p-6 rounded-xl group" data-aos="fade-up" data-aos-delay="700">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-microphone-lines text-3xl text-cyan-400"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Custom Speech-to-Text</h3>
+                    <p class="text-sm text-slate-400 mb-4">Built from scratch. Achieved WER of 41.2% on custom datasets.</p>
                 </div>
 
-                <!-- Project 9: Pashto Audio Codec -->
-                <div class="tilt-card h-full" data-aos="fade-up" data-aos-delay="800">
-                    <div class="glass-panel p-6 rounded-2xl h-full border border-slate-800 hover:border-primary/50 group transition-all duration-300 relative">
-                        <div class="mb-4 text-pink-400 text-3xl"><i class="fas fa-wave-square"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Pashto Audio Codec</h3>
-                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-                            Evaluated the SNAC audio codec for reconstruction quality on low-resource Pashto audio data for cultural preservation.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-pink-400">Research</span>
-                            <span class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-pink-400">Audio</span>
-                        </div>
+                <!-- 9. Audio Codec -->
+                <div class="tilt-card holo-card p-6 rounded-xl group" data-aos="fade-up" data-aos-delay="800">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-wave-square text-3xl text-purple-400"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Pashto Audio Codec</h3>
+                    <p class="text-sm text-slate-400 mb-4">Evaluated SNAC audio codec reconstruction quality for low-resource languages.</p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Research Publications -->
-    <section id="research" class="py-24">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-16">Scientific <span class="text-primary">Publications</span></h2>
+    <!-- Research -->
+    <section id="research" class="py-20 bg-white/5">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-mono font-bold text-white mb-12 text-center">
+                RESEARCH_PAPERS
+            </h2>
 
-            <div class="space-y-6">
+            <div class="space-y-4">
                 
-                <!-- Pub 1 -->
-                <div class="glass-panel p-8 rounded-xl border border-slate-800 relative overflow-hidden group hover:-translate-y-1 transition-transform" data-aos="fade-up">
-                    <div class="absolute top-0 right-0 bg-green-500/20 text-green-400 text-xs font-bold px-4 py-1.5 rounded-bl-xl border-b border-l border-green-500/20">PUBLISHED • PeerJ</div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Pashto Poetry Generation: Deep Learning with Pre-trained Transformers</h3>
-                    <p class="text-slate-400 text-sm mb-4 italic">Imran Ullah, et al. (2024)</p>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Investigated the generation of poetry in low-resource languages using fine-tuned transformer models, contributing to cultural preservation through AI.
-                    </p>
-                    <a href="https://peerj.com/articles/cs-2163/" target="_blank" class="inline-flex items-center text-sm font-semibold text-primary hover:underline">Read Paper <i class="fas fa-external-link-alt ml-2"></i></a>
-                </div>
-
-                <!-- Pub 2 -->
-                <div class="glass-panel p-8 rounded-xl border border-slate-800 relative overflow-hidden group hover:-translate-y-1 transition-transform" data-aos="fade-up">
-                    <div class="absolute top-0 right-0 bg-yellow-500/20 text-yellow-400 text-xs font-bold px-4 py-1.5 rounded-bl-xl border-b border-l border-yellow-500/20">UNDER REVIEW</div>
-                    <h3 class="text-xl font-bold text-white mb-2">When AI Meets Medicine: A Comprehensive Survey</h3>
-                    <p class="text-slate-400 text-sm mb-4 italic">Ali Zafar, Imran Ullah, et al. (CMPB-D-25-05288)</p>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        A comprehensive survey of Deep Learning, LLMs, and Multimodal Fusions in Medication Recommendation systems.
-                    </p>
-                </div>
-
-                <!-- Pub 3 & 4 (Grid for Work in Progress) -->
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="glass-panel p-6 rounded-xl border border-slate-800 border-l-4 border-l-blue-500" data-aos="fade-up">
-                        <div class="text-xs font-bold text-blue-400 mb-2 uppercase tracking-wide">Research in Progress</div>
-                        <h3 class="text-lg font-bold text-white mb-2">PRIME-GATE</h3>
-                        <p class="text-slate-500 text-xs">Personalized and Robust Intelligent Medication Engine Using Graph-Aware Temporal Encoding.</p>
+                <!-- Paper 1 -->
+                <div class="holo-card p-6 rounded border-l-4 border-l-green-500" data-aos="flip-up">
+                    <div class="flex justify-between">
+                        <h3 class="text-lg font-bold text-white">Pashto Poetry Generation: Deep Learning with Transformers</h3>
+                        <span class="text-green-400 font-mono text-xs">PUBLISHED 2024</span>
                     </div>
-                    <div class="glass-panel p-6 rounded-xl border border-slate-800 border-l-4 border-l-purple-500" data-aos="fade-up">
-                        <div class="text-xs font-bold text-purple-400 mb-2 uppercase tracking-wide">Research in Progress</div>
-                        <h3 class="text-lg font-bold text-white mb-2">MIRA-Lite-MT</h3>
-                        <p class="text-slate-500 text-xs">Lightweight Multimodal Instruction-Guided Retrieval-Augmented Reasoning.</p>
-                    </div>
+                    <p class="text-slate-400 text-sm mt-2">PeerJ Computer Science. Investigated poetry generation for low-resource languages.</p>
+                    <a href="https://peerj.com/articles/cs-2163/" class="text-holo text-sm mt-2 block hover:underline">ACCESS_DOI -></a>
                 </div>
 
-            </div>
-        </div>
-    </section>
+                <!-- Paper 2 -->
+                <div class="holo-card p-6 rounded border-l-4 border-l-yellow-500" data-aos="flip-up">
+                    <div class="flex justify-between">
+                        <h3 class="text-lg font-bold text-white">When AI Meets Medicine: A Comprehensive Survey</h3>
+                        <span class="text-yellow-400 font-mono text-xs">UNDER REVIEW</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mt-2">Survey of Deep Learning, LLMs, and Multimodal Fusions in Medication Recommendation.</p>
+                </div>
 
-    <!-- Tech Stack Scroller (Infinite) -->
-    <section class="py-12 bg-black border-y border-slate-800 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 mb-6">
-            <p class="text-center text-slate-500 text-sm uppercase tracking-widest font-semibold">Technologies I use</p>
-        </div>
-        <div class="relative flex overflow-x-hidden group">
-            <div class="py-4 animate-marquee whitespace-nowrap flex space-x-12 px-12">
-                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fab fa-python text-yellow-400"></i> Python</span>
-                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fas fa-fire text-orange-500"></i> PyTorch</span>
-                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fas fa-cube text-blue-400"></i> TensorFlow</span>
-                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2">🤗 Hugging Face</span>
-                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fas fa-server text-green-400"></i> vLLM</span>
-                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2">🦜🔗 LangChain</span>
-                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fab fa-aws text-orange-400"></i> AWS</span>
-                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fab fa-docker text-blue-500"></i> Docker</span>
-                <!-- Duplicate for loop -->
-                 <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fab fa-python text-yellow-400"></i> Python</span>
-                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fas fa-fire text-orange-500"></i> PyTorch</span>
-                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fas fa-cube text-blue-400"></i> TensorFlow</span>
-                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2">🤗 Hugging Face</span>
-                <span class="text-2xl text-slate-400 font-bold flex items-center gap-2"><i class="fas fa-server text-green-400"></i> vLLM</span>
+                <!-- Paper 3 -->
+                <div class="holo-card p-6 rounded border-l-4 border-l-blue-500" data-aos="flip-up">
+                    <div class="flex justify-between">
+                        <h3 class="text-lg font-bold text-white">PRIME-GATE: Intelligent Medication Engine</h3>
+                        <span class="text-blue-400 font-mono text-xs">IN PROGRESS</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mt-2">Personalized and Robust Intelligent Medication Engine Using Graph-Aware Temporal Encoding.</p>
+                </div>
+
+                <!-- Paper 4 -->
+                <div class="holo-card p-6 rounded border-l-4 border-l-purple-500" data-aos="flip-up">
+                    <div class="flex justify-between">
+                        <h3 class="text-lg font-bold text-white">MIRA-Lite-MT: Multimodal RAG</h3>
+                        <span class="text-purple-400 font-mono text-xs">IN PROGRESS</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mt-2">Lightweight Multimodal Instruction-Guided Retrieval-Augmented Reasoning.</p>
+                </div>
+
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-dark pt-20 pb-10">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="font-heading text-4xl font-bold text-white mb-6">Let's Build the Future of AI</h2>
-            <p class="text-slate-400 mb-10 text-lg">
-                Always open to discussing LLM architectures, Research Collaborations, or Coffee.
-            </p>
-            
-            <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-16">
-                <a href="mailto:imranullahds@gmail.com" class="px-8 py-4 bg-primary rounded-full text-white font-bold text-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] transition-all">
-                    <i class="fas fa-paper-plane mr-2"></i> imranullahds@gmail.com
-                </a>
-                <a href="https://buymeacoffee.com/imranullahds" target="_blank" class="px-8 py-4 bg-[#FFDD00] text-black rounded-full font-bold text-lg hover:brightness-110 transition-all">
-                    <i class="fas fa-coffee mr-2"></i> Buy me a coffee
-                </a>
-            </div>
-
-            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-slate-600 text-sm">© 2025 Imran Ullah. All rights reserved.</p>
-                <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="https://linkedin.com/in/imranullahds" class="text-slate-500 hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
-                    <a href="https://github.com/imrankh46" class="text-slate-500 hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
-                    <a href="https://x.com/imran_ds" class="text-slate-500 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
-                    <a href="https://medium.com/@imranullahds" class="text-slate-500 hover:text-white transition"><i class="fab fa-medium text-xl"></i></a>
-                </div>
-            </div>
+    <footer class="py-12 border-t border-white/10 text-center">
+        <h2 class="text-2xl text-white font-mono mb-6">INITIATE_COMMUNICATION</h2>
+        <div class="flex justify-center gap-6 mb-8 text-2xl">
+            <a href="https://linkedin.com/in/imranullahds" class="text-slate-500 hover:text-holo transition"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/imrankh46" class="text-slate-500 hover:text-white transition"><i class="fab fa-github"></i></a>
+            <a href="mailto:imranullahds@gmail.com" class="text-slate-500 hover:text-holo2 transition"><i class="fas fa-envelope"></i></a>
         </div>
+        <p class="text-slate-600 font-mono text-xs">SYSTEM_ID: IMRAN_ULLAH_V1.0 // TERMINATED</p>
     </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS Animation Library
         AOS.init({
-            once: true,
             offset: 100,
             duration: 800,
+            easing: 'ease-in-out',
+            once: true
         });
 
-        // 3D Tilt Effect Logic for Cards
+        // 3D Tilt Script
         const cards = document.querySelectorAll('.tilt-card');
-
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; // x position within the element.
-                const y = e.clientY - rect.top;  // y position within the element.
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -5; // Rotate X axis (vertical tilt)
-                const rotateY = ((x - centerX) / centerX) * 5;  // Rotate Y axis (horizontal tilt)
-
-                // Apply the transform to the inner glass panel
-                const inner = card.querySelector('.glass-panel');
-                inner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.transform = `perspective(1000px) rotateX(${(y - rect.height/2) / 20}deg) rotateY(${-(x - rect.width/2) / 20}deg)`;
             });
-
             card.addEventListener('mouseleave', () => {
-                const inner = card.querySelector('.glass-panel');
-                inner.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
             });
         });
-
-        // Infinite Marquee Animation Config
-        tailwind.config.theme.extend.animation = {
-            ...tailwind.config.theme.extend.animation,
-            marquee: 'marquee 25s linear infinite',
-        };
-        tailwind.config.theme.extend.keyframes = {
-            ...tailwind.config.theme.extend.keyframes,
-            marquee: {
-                '0%': { transform: 'translateX(0%)' },
-                '100%': { transform: 'translateX(-50%)' },
-            }
-        };
     </script>
-    
-    <style>
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-            animation: marquee 30s linear infinite;
-        }
-    </style>
 </body>
 </html>
