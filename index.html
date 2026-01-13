@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imran Ullah | AI Researcher & Engineer</title>
-    <meta name="description" content="Portfolio of Imran Ullah - Expert in LLM Post-Training, RAG, and Computer Vision.">
-
+    <title>Imran Ullah | AI Researcher</title>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Orbitron (Sci-Fi Headers) & Rajdhani (Tech Text) -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts: Orbitron & Rajdhani -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,23 +27,12 @@
                     },
                     colors: {
                         cyan: '#00f3ff',
-                        purple: '#bc13fe',
-                        dark: '#020617',
-                        panel: 'rgba(10, 20, 35, 0.85)'
-                    },
-                    backgroundImage: {
-                        'grid': "linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px)"
+                        purple: '#d946ef',
+                        dark: '#050505',
+                        glass: '#0f172a'
                     },
                     animation: {
-                        'scan': 'scan 4s linear infinite',
-                    },
-                    keyframes: {
-                        scan: {
-                            '0%': { top: '0%', opacity: 0 },
-                            '10%': { opacity: 1 },
-                            '90%': { opacity: 1 },
-                            '100%': { top: '100%', opacity: 0 },
-                        }
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -53,208 +41,365 @@
 
     <style>
         body {
-            background-color: #020617;
-            color: #e2e8f0;
+            background-color: #050505;
+            color: #94a3b8;
             overflow-x: hidden;
+            perspective: 2000px; /* Global perspective for 3D elements */
         }
 
-        /* Sci-Fi Grid Background */
-        .bg-sci-fi {
-            background-size: 40px 40px;
-            background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
-            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        /* --- BACKGROUND FX --- */
+        .cyber-grid {
+            position: fixed; top: 0; left: 0; width: 200%; height: 200%;
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 40s linear infinite;
+            z-index: -10;
+            mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
         }
+        @keyframes moveGrid { 0% { transform: translate(0,0); } 100% { transform: translate(-50px, -50px); } }
 
-        /* 3D Tilt Card Base */
-        .tilt-card {
-            transform-style: preserve-3d;
-            transition: transform 0.1s ease-out;
-            background: rgba(2, 6, 23, 0.7);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 243, 255, 0.15);
+        /* --- ADVANCED HOLOGRAPHIC CARD --- */
+        .holo-card {
             position: relative;
+            background: rgba(16, 23, 41, 0.6); /* Dark Glass */
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transform-style: preserve-3d; /* CRITICAL FOR 3D DEPTH */
+            transition: transform 0.1s ease-out, border-color 0.3s, box-shadow 0.3s;
             overflow: hidden;
         }
 
-        /* Tech Badge (Pills) */
-        .tech-badge {
-            background: rgba(0, 243, 255, 0.05);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: #94a3b8;
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-        .tech-badge:hover {
-            background: rgba(0, 243, 255, 0.15);
-            color: #00f3ff;
-            border-color: #00f3ff;
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        /* Hover State */
+        .holo-card:hover {
+            border-color: rgba(0, 243, 255, 0.5);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.15), inset 0 0 20px rgba(0, 243, 255, 0.05);
+            z-index: 10;
         }
 
-        /* Interactive Text Highlight */
+        /* Holographic Sheen Effect */
+        .holo-card::after {
+            content: "";
+            position: absolute;
+            top: 0; left: -150%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), rgba(0, 243, 255, 0.1), transparent);
+            transform: skewX(-25deg);
+            transition: 0.5s;
+            pointer-events: none;
+        }
+        .holo-card:hover::after {
+            left: 150%;
+            transition: 0.7s ease-in-out;
+        }
+
+        /* Content Z-Depth (Floating Text) */
+        .holo-content {
+            transform: translateZ(30px); /* Pushes text towards user */
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            pointer-events: none; /* Let clicks pass to links */
+        }
+        
+        /* Floating Icons */
+        .holo-icon {
+            transform: translateZ(50px);
+            filter: drop-shadow(0 0 10px rgba(0,243,255,0.5));
+        }
+
+        /* Links need pointer events back */
+        .holo-link { pointer-events: auto; transform: translateZ(60px); }
+
+        /* --- UTILS --- */
         .highlight {
-            color: #e2e8f0;
-            border-bottom: 1px dashed rgba(0, 243, 255, 0.3);
-            transition: all 0.3s;
+            color: white; font-weight: 700;
+            border-bottom: 1px dashed rgba(0, 243, 255, 0.4);
         }
-        .highlight:hover {
-            color: #00f3ff;
-            text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
-            border-bottom: 1px solid #00f3ff;
+        
+        .tech-pill {
+            font-size: 0.7rem; padding: 4px 8px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px; color: #94a3b8;
+            transform: translateZ(20px);
+            transition: 0.3s;
         }
-
-        /* Corner Accents */
-        .corner-accent::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 15px; height: 15px;
-            border-top: 2px solid #00f3ff; border-left: 2px solid #00f3ff;
+        .holo-card:hover .tech-pill {
+            border-color: #00f3ff; color: #00f3ff;
+            background: rgba(0, 243, 255, 0.1);
         }
-        .corner-accent::after {
-            content: ''; position: absolute; bottom: 0; right: 0; width: 15px; height: 15px;
-            border-bottom: 2px solid #00f3ff; border-right: 2px solid #00f3ff;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00f3ff; }
-
+        
+        /* --- PROFILE SCANNER --- */
         .scan-line {
             position: absolute; left: 0; width: 100%; height: 2px;
-            background: #00f3ff; box-shadow: 0 0 10px #00f3ff;
+            background: #00f3ff; box-shadow: 0 0 15px #00f3ff;
             animation: scan 3s linear infinite; z-index: 20;
         }
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00f3ff; }
     </style>
 </head>
-<body class="selection:bg-cyan selection:text-black">
+<body class="antialiased selection:bg-cyan selection:text-black">
 
-    <div class="fixed inset-0 bg-sci-fi -z-10 pointer-events-none"></div>
+    <div class="cyber-grid"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 border-b border-white/5 bg-dark/90 backdrop-blur-md">
+    <nav class="fixed w-full z-50 border-b border-white/5 bg-dark/80 backdrop-blur-xl">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-between h-20">
-                <div class="font-sci text-2xl tracking-widest text-white group cursor-pointer">
+            <div class="flex items-center justify-between h-16">
+                <div class="font-sci text-xl font-bold tracking-widest text-white cursor-pointer group">
                     IMRAN<span class="text-cyan group-hover:animate-pulse">_ULLAH</span>
                 </div>
-                <div class="hidden md:flex space-x-10">
-                    <a href="#home" class="font-sans font-bold text-lg tracking-widest hover:text-cyan transition-colors">HOME</a>
-                    <a href="#experience" class="font-sans font-bold text-lg tracking-widest hover:text-cyan transition-colors">EXP</a>
-                    <a href="#skills" class="font-sans font-bold text-lg tracking-widest hover:text-cyan transition-colors">STACK</a>
-                    <a href="#projects" class="font-sans font-bold text-lg tracking-widest hover:text-cyan transition-colors">PROJECTS</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-sm font-bold tracking-widest hover:text-cyan transition">HOME</a>
+                    <a href="#experience" class="text-sm font-bold tracking-widest hover:text-cyan transition">EXP</a>
+                    <a href="#tech" class="text-sm font-bold tracking-widest hover:text-cyan transition">STACK</a>
+                    <a href="#projects" class="text-sm font-bold tracking-widest hover:text-cyan transition">PROJECTS</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-16 items-center z-10">
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center z-10">
             
             <div data-aos="fade-right">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-[2px] w-8 bg-cyan"></div>
-                    <span class="text-cyan font-mono text-sm tracking-[0.2em]">SYSTEM_ONLINE</span>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan/30 bg-cyan/5 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-cyan animate-pulse"></span>
+                    <span class="text-cyan font-mono text-xs tracking-widest">SYSTEM ONLINE</span>
                 </div>
                 
-                <h1 class="text-5xl md:text-7xl font-sci font-bold text-white leading-tight mb-6">
-                    AI RESEARCHER &<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-purple">ML ENGINEER</span>
+                <h1 class="text-xl md:text-4xl font-sci font-bold text-white leading-tight mb-6">
+                    AI RESEARCHER <span class="text-slate-600">//</span><br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-purple">MACHINE LEARNING ENGINEER</span>
                 </h1>
                 
-                <p class="text-slate-300 text-lg md:text-xl font-sans leading-relaxed mb-8 border-l-4 border-cyan pl-6">
+                <p class="text-slate-400 text-base md:text-lg mb-8 max-w-lg leading-relaxed">
                     Specializing in <span class="highlight">LLM Post-Training</span> (SFT, RLHF, GRPO), 
-                    <span class="highlight">RAG Systems</span>, and 
-                    <span class="highlight">Multimodal AI</span>. 
-                    Building scalable, intelligent agents for the real world.
+                    <span class="highlight">Agentic RAG</span>, and 
+                    <span class="highlight">Multimodal Vision</span>. 
+                    Building scalable, intelligent solutions for enterprise and research.
                 </p>
 
-                <div class="flex flex-wrap gap-4">
-                    <a href="#projects" class="px-8 py-3 bg-cyan text-black font-bold font-sci hover:bg-white transition-all skew-x-[-12deg] hover:skew-x-0">
-                        <span class="skew-x-[12deg] inline-block">VIEW MODULES</span>
+                <div class="flex flex-wrap gap-4 items-center">
+                    <a href="#projects" class="px-8 py-2.5 bg-cyan text-black font-bold font-sci hover:bg-white transition hover:scale-105 skew-x-[-10deg]">
+                        <span class="skew-x-[10deg] inline-block">VIEW MODULES</span>
                     </a>
-                    <div class="flex gap-4 items-center pl-4">
-                        <a href="https://linkedin.com/in/imranullahds" target="_blank" class="text-slate-400 hover:text-cyan text-3xl transition-transform hover:-translate-y-1"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/imrankh46" target="_blank" class="text-slate-400 hover:text-white text-3xl transition-transform hover:-translate-y-1"><i class="fab fa-github"></i></a>
-                        <a href="https://huggingface.co/Imran1" target="_blank" class="text-slate-400 hover:text-yellow-400 text-3xl transition-transform hover:-translate-y-1">🤗</a>
+                    <div class="flex gap-4 ml-2">
+                        <a href="https://linkedin.com/in/imranullahds" target="_blank" class="text-slate-400 hover:text-cyan text-2xl transition hover:-translate-y-1"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/imrankh46" target="_blank" class="text-slate-400 hover:text-white text-2xl transition hover:-translate-y-1"><i class="fab fa-github"></i></a>
+                        <a href="https://www.upwork.com/freelancers/~01c5627da584877e0c?mp_source=share" target="_blank" class="text-slate-400 hover:text-[#14a800] text-2xl transition hover:-translate-y-1"><i class="fas fa-briefcase"></i></a>
+                        <a href="mailto:imranullahds@gmail.com" class="text-slate-400 hover:text-purple text-2xl transition hover:-translate-y-1"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
 
-            <!-- Image Frame -->
+            <!-- Profile Image (Scanner Restored) -->
             <div class="flex justify-center md:justify-end" data-aos="zoom-in" data-aos-duration="1000">
-                <div class="relative w-[300px] h-[436px] md:w-[389px] md:h-[566px] p-2 border border-cyan/30 bg-cyan/5 backdrop-blur-sm">
-                    <div class="corner-accent"></div>
-                    <div class="scan-line"></div>
-                    <img src="https://raw.githubusercontent.com/imrankh46/imrankh46.github.io/main/profile%20image%20in%20blueb.png" 
-                         alt="Imran Ullah" 
-                         class="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition duration-700"
-                         style="box-shadow: inset 0 0 30px rgba(0,0,0,0.9);">
-                    <div class="absolute bottom-4 left-0 w-full text-center">
-                        <span class="bg-black/80 text-cyan text-xs font-mono px-3 py-1 border border-cyan/50">ID: IMRAN_ULLAH</span>
+                <div class="relative w-[300px] h-[436px] p-1 bg-gradient-to-br from-cyan/30 to-purple/30 backdrop-blur-sm shadow-[0_0_30px_rgba(0,243,255,0.15)]">
+                    <!-- Tech Corners -->
+                    <div class="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-cyan"></div>
+                    <div class="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-purple"></div>
+                    
+                    <div class="relative w-full h-full overflow-hidden bg-dark">
+                        <!-- THE SCANNING LINE IS HERE -->
+                        <div class="scan-line"></div> 
+                        
+                        <img src="https://raw.githubusercontent.com/imrankh46/imrankh46.github.io/main/profile%20image%20in%20blueb.png" 
+                             alt="Imran Ullah" 
+                             class="w-full h-full object-cover opacity-90 hover:opacity-100 transition duration-700">
+                        <div class="absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black to-transparent">
+                             <div class="font-mono text-[10px] text-cyan text-right">ID: IMRAN_ULLAH</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- Experience Log (Reverted to Clean Cards) -->
     <section id="experience" class="py-24 relative">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="section-title text-5xl font-sci font-bold text-white mb-20 text-center" data-value="EXPERIENCE_LOG">EXPERIENCE_LOG</h2>
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-sci font-bold text-white mb-16 text-center hacker-text" data-value="EXPERIENCE_LOG">EXPERIENCE_LOG</h2>
 
-            <div class="space-y-16 relative border-l border-white/10 ml-4 md:ml-0 pl-10 md:pl-0">
+            <div class="relative border-l border-white/10 ml-4 pl-8 space-y-12">
                 
                 <!-- Role 1 -->
-                <div class="relative md:pl-10 group" data-aos="fade-down">
-                    <div class="absolute -left-[6px] top-0 w-3 h-3 bg-cyan rounded-full shadow-[0_0_15px_#00f3ff] group-hover:scale-150 transition-transform"></div>
-                    <div class="tilt-card corner-accent p-8 rounded-lg">
-                        <div class="flex flex-col md:flex-row justify-between mb-4 items-start md:items-center">
-                            <div>
-                                <h3 class="text-2xl font-bold text-white">Machine Learning Researcher</h3>
-                                <div class="text-cyan font-mono text-lg tracking-wider">GRINDA AI (REMOTE)</div>
+                <div class="relative group" data-aos="fade-left">
+                    <div class="absolute -left-[39px] top-4 w-5 h-5 bg-dark border-2 border-cyan rounded-full shadow-[0_0_10px_#00f3ff]"></div>
+                    <div class="holo-card tilt-box">
+                        <div class="holo-content">
+                            <div class="flex flex-col md:flex-row justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Machine Learning Researcher</h3>
+                                <span class="text-cyan font-mono text-sm border border-cyan/30 px-2 py-0.5 rounded">MAR 2023 - NOV 2025</span>
                             </div>
-                            <span class="text-slate-400 font-mono border border-slate-700 px-3 py-1 text-sm">MAR 2023 - NOV 2025</span>
-                        </div>
-                        <p class="text-slate-300 text-lg leading-relaxed mb-6">
-                            Spearheaded Enterprise GenAI solutions. Fine-tuned <span class="highlight">Qwen2.5-32B</span> for specialized domains. 
-                            Generated <span class="highlight">1.3M-sample synthetic datasets</span> (22 languages) for BUSN Bank. 
-                            Optimized inference latency by 40% using <span class="highlight">vLLM</span> and custom quantization.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tech-badge">LLM Fine-tuning</span>
-                            <span class="tech-badge">Synthetic Data</span>
-                            <span class="tech-badge">vLLM</span>
-                            <span class="tech-badge">Multimodal Agents</span>
+                            <p class="text-sm font-mono text-slate-400 mb-4">GRINDA AI (REMOTE)</p>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li>• Fine-tuned <span class="highlight">Qwen2.5-32B</span> and <span class="highlight">Llama-3</span>.</li>
+                                <li>• Generated <span class="highlight">1.3M-sample synthetic datasets</span> (22 languages).</li>
+                                <li>• Optimized inference latency by 40% using <span class="highlight">vLLM</span> and <span class="highlight">AWQ</span>.</li>
+                                <li>• Deployed <span class="highlight">Multimodal Agents</span> for manufacturing pipelines.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
                 <!-- Role 2 -->
-                <div class="relative md:pl-10 group" data-aos="fade-down" data-aos-delay="100">
-                    <div class="absolute -left-[6px] top-0 w-3 h-3 bg-purple rounded-full shadow-[0_0_15px_#bc13fe] group-hover:scale-150 transition-transform"></div>
-                    <div class="tilt-card p-8 rounded-lg border-l border-t border-purple/30">
-                        <div class="flex flex-col md:flex-row justify-between mb-4 items-start md:items-center">
-                            <div>
-                                <h3 class="text-2xl font-bold text-white">Freelance AI Engineer</h3>
-                                <div class="text-purple font-mono text-lg tracking-wider">UPWORK (GLOBAL)</div>
+                <div class="relative group" data-aos="fade-left" data-aos-delay="100">
+                    <div class="absolute -left-[39px] top-4 w-5 h-5 bg-dark border-2 border-purple rounded-full shadow-[0_0_10px_#d946ef]"></div>
+                    <div class="holo-card tilt-box border-l-4 border-l-purple">
+                        <div class="holo-content">
+                            <div class="flex flex-col md:flex-row justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Freelance AI Engineer</h3>
+                                <span class="text-purple font-mono text-sm border border-purple/30 px-2 py-0.5 rounded">SEP 2020 - PRESENT</span>
                             </div>
-                            <span class="text-slate-400 font-mono border border-slate-700 px-3 py-1 text-sm">SEP 2020 - PRESENT</span>
+                            <p class="text-sm font-mono text-slate-400 mb-4">UPWORK (GLOBAL)</p>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li>• Developed custom <span class="highlight">Speech-to-Text</span> models (WER 41.2%).</li>
+                                <li>• Built <span class="highlight">YOLOv11</span> pipelines processing 25k images/25min.</li>
+                                <li>• Deployed Medical Imaging models (<span class="highlight">98.54% Acc</span>) on AWS.</li>
+                            </ul>
+                            <div class="mt-4 holo-link">
+                                <a href="https://www.upwork.com/freelancers/~01c5627da584877e0c?mp_source=share" target="_blank" class="inline-flex items-center text-xs font-bold text-black bg-[#14a800] px-3 py-1 rounded hover:bg-white transition">
+                                    HIRE ON UPWORK <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
                         </div>
-                        <p class="text-slate-300 text-lg leading-relaxed mb-6">
-                            Delivered end-to-end ML solutions globally. Developed custom <span class="highlight">Speech-to-Text</span> models (WER 41.2%), 
-                            automated <span class="highlight">YOLOv11</span> data pipelines (25k images/25min), and deployed 
-                            <span class="highlight">Medical Imaging</span> models with 98.54% accuracy using PyTorch and AWS SageMaker.
-                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Arsenal -->
+    <section id="tech" class="py-20 bg-white/5 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-sci font-bold text-white mb-12 text-center hacker-text" data-value="TECHNICAL_ARSENAL">TECHNICAL_ARSENAL</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- 1 -->
+                <div class="holo-card tilt-box border-t-2 border-t-cyan" data-aos="fade-up">
+                    <div class="holo-content">
+                        <div class="flex items-center gap-3 mb-4 holo-icon">
+                            <i class="fas fa-brain text-cyan"></i>
+                            <h3 class="text-cyan font-bold font-sci text-sm">LLM POST-TRAINING</h3>
+                        </div>
                         <div class="flex flex-wrap gap-2">
-                            <span class="tech-badge">Computer Vision</span>
-                            <span class="tech-badge">NLP</span>
-                            <span class="tech-badge">AWS SageMaker</span>
-                            <span class="tech-badge">YOLO</span>
+                            <span class="tech-pill text-white border-cyan/40">SFT</span>
+                            <span class="tech-pill text-white border-cyan/40">RLHF</span>
+                            <span class="tech-pill text-white border-cyan/40">DPO</span>
+                            <span class="tech-pill text-white border-cyan/40">GRPO</span>
+                            <span class="tech-pill">Unsloth</span>
+                            <span class="tech-pill">TRL</span>
+                            <span class="tech-pill">Axolotl</span>
+                            <span class="tech-pill">Synthetic Data</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="holo-card tilt-box border-t-2 border-t-purple" data-aos="fade-up" data-aos-delay="50">
+                    <div class="holo-content">
+                        <div class="flex items-center gap-3 mb-4 holo-icon">
+                            <i class="fas fa-project-diagram text-purple"></i>
+                            <h3 class="text-purple font-bold font-sci text-sm">RAG & AGENTS</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-pill text-white border-purple/40">LangChain</span>
+                            <span class="tech-pill text-white border-purple/40">LlamaIndex</span>
+                            <span class="tech-pill">LangGraph</span>
+                            <span class="tech-pill">CrewAI</span>
+                            <span class="tech-pill">Ragas (Eval)</span>
+                            <span class="tech-pill">LangSmith</span>
+                            <span class="tech-pill">LlamaParse</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="holo-card tilt-box border-t-2 border-t-green-400" data-aos="fade-up" data-aos-delay="100">
+                    <div class="holo-content">
+                        <div class="flex items-center gap-3 mb-4 holo-icon">
+                            <i class="fas fa-eye text-green-400"></i>
+                            <h3 class="text-green-400 font-bold font-sci text-sm">VISION & AUDIO</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-pill text-white border-green-500/40">YOLOv11</span>
+                            <span class="tech-pill">Segmentation</span>
+                            <span class="tech-pill">Tracking</span>
+                            <span class="tech-pill">ResNet/CNN</span>
+                            <span class="tech-pill">ViT</span>
+                            <span class="tech-pill">Diffusion</span>
+                            <span class="tech-pill text-white border-green-500/40">Whisper</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="holo-card tilt-box border-t-2 border-t-blue-400" data-aos="fade-up" data-aos-delay="150">
+                    <div class="holo-content">
+                        <div class="flex items-center gap-3 mb-4 holo-icon">
+                            <i class="fas fa-server text-blue-400"></i>
+                            <h3 class="text-blue-400 font-bold font-sci text-sm">MLOPS & DEPLOY</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-pill text-white border-blue-500/40">vLLM</span>
+                            <span class="tech-pill">SGLang</span>
+                            <span class="tech-pill">LMDeploy</span>
+                            <span class="tech-pill">Docker</span>
+                            <span class="tech-pill">Kubernetes</span>
+                            <span class="tech-pill">AWS SageMaker</span>
+                            <span class="tech-pill">MLflow</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="holo-card tilt-box border-t-2 border-t-yellow-500" data-aos="fade-up" data-aos-delay="200">
+                     <div class="holo-content">
+                        <div class="flex items-center gap-3 mb-4 holo-icon">
+                            <i class="fas fa-code text-yellow-500"></i>
+                            <h3 class="text-yellow-400 font-bold font-sci text-sm">CORE DL & MATH</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-pill">PyTorch</span>
+                            <span class="tech-pill">TensorFlow</span>
+                            <span class="tech-pill">Keras</span>
+                            <span class="tech-pill">Scikit-learn</span>
+                            <span class="tech-pill">GNN (DGL)</span>
+                            <span class="tech-pill">Autoencoders</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="holo-card tilt-box border-t-2 border-t-pink-500" data-aos="fade-up" data-aos-delay="250">
+                     <div class="holo-content">
+                        <div class="flex items-center gap-3 mb-4 holo-icon">
+                            <i class="fas fa-terminal text-pink-500"></i>
+                            <h3 class="text-pink-400 font-bold font-sci text-sm">LANGUAGES</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">C++</span>
+                            <span class="tech-pill">SQL</span>
+                            <span class="tech-pill">Bash</span>
+                            <span class="tech-pill">JavaScript</span>
                         </div>
                     </div>
                 </div>
@@ -263,254 +408,98 @@
         </div>
     </section>
 
-    <!-- Deep Tech Stack (New Interactive Section) -->
-    <section id="skills" class="py-24 bg-dark/40 border-y border-white/5">
+    <!-- Projects Grid (ADVANCED 3D HOLOGRAPHIC UI) -->
+    <section id="projects" class="py-20">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="section-title text-4xl font-sci font-bold text-white mb-16 text-right" data-value="TECHNICAL_ARSENAL">TECHNICAL_ARSENAL</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <!-- 1. LLM Post-Training -->
-                <div class="tilt-card p-6 group" data-aos="fade-up">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-brain text-cyan text-2xl"></i>
-                        <h3 class="text-xl font-bold text-white font-sci">LLM POST-TRAINING</h3>
-                    </div>
-                    <div class="space-y-3">
-                        <div>
-                            <p class="text-xs text-slate-500 font-mono mb-1">ALIGNMENT ALGORITHMS</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tech-badge text-cyan border-cyan/30">SFT</span>
-                                <span class="tech-badge text-cyan border-cyan/30">RLHF</span>
-                                <span class="tech-badge text-cyan border-cyan/30">DPO</span>
-                                <span class="tech-badge text-cyan border-cyan/30">ORPO</span>
-                                <span class="tech-badge text-cyan border-cyan/30">GRPO</span>
-                                <span class="tech-badge">Dr-GRPO</span>
-                                <span class="tech-badge">DAPO</span>
-                                <span class="tech-badge">SAPO</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-500 font-mono mb-1">FRAMEWORKS</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tech-badge">Unsloth</span>
-                                <span class="tech-badge">TRL</span>
-                                <span class="tech-badge">Axolotl</span>
-                                <span class="tech-badge">Peft/LoRA</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. RAG & Agents -->
-                <div class="tilt-card p-6 group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-network-wired text-purple text-2xl"></i>
-                        <h3 class="text-xl font-bold text-white font-sci">RAG & AGENTS</h3>
-                    </div>
-                    <div class="space-y-3">
-                        <div>
-                            <p class="text-xs text-slate-500 font-mono mb-1">ORCHESTRATION</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tech-badge text-purple border-purple/30">LlamaIndex</span>
-                                <span class="tech-badge text-purple border-purple/30">LangChain</span>
-                                <span class="tech-badge">LangGraph</span>
-                                <span class="tech-badge">CrewAI</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-500 font-mono mb-1">TOOLS & EVAL</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tech-badge">LlamaParse</span>
-                                <span class="tech-badge">Multimodal RAG</span>
-                                <span class="tech-badge">LangSmith</span>
-                                <span class="tech-badge">Ragas</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. Deployment & Ops -->
-                <div class="tilt-card p-6 group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-server text-blue-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-white font-sci">DEPLOYMENT & OPS</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tech-badge text-blue-400 border-blue-400/30">vLLM</span>
-                        <span class="tech-badge">SGLang</span>
-                        <span class="tech-badge">LMDeploy</span>
-                        <span class="tech-badge">Triton Inference</span>
-                        <span class="tech-badge">Docker</span>
-                        <span class="tech-badge">Kubernetes</span>
-                        <span class="tech-badge">AWS SageMaker</span>
-                        <span class="tech-badge">MLflow</span>
-                    </div>
-                </div>
-
-                <!-- 4. Vision & Multimodal -->
-                <div class="tilt-card p-6 group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-eye text-green-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-white font-sci">VISION & MULTIMODAL</h3>
-                    </div>
-                    <div class="space-y-3">
-                        <div>
-                            <p class="text-xs text-slate-500 font-mono mb-1">YOLO ECOSYSTEM</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tech-badge text-green-400 border-green-400/30">Detection</span>
-                                <span class="tech-badge text-green-400 border-green-400/30">Segmentation</span>
-                                <span class="tech-badge text-green-400 border-green-400/30">Tracking</span>
-                                <span class="tech-badge">YOLOv11</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-500 font-mono mb-1">ARCHITECTURES</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tech-badge">CNN (ResNet)</span>
-                                <span class="tech-badge">Vision Transformers</span>
-                                <span class="tech-badge">Diffusion Models</span>
-                                <span class="tech-badge">VAEs / GANs</span>
-                                <span class="tech-badge">OCR</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. Graph & Core ML -->
-                <div class="tilt-card p-6 group" data-aos="fade-up" data-aos-delay="400">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-project-diagram text-pink-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-white font-sci">GRAPH & CORE ML</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tech-badge text-pink-400 border-pink-400/30">GNN</span>
-                        <span class="tech-badge">DGL Library</span>
-                        <span class="tech-badge">Autoencoders</span>
-                        <span class="tech-badge">Keras</span>
-                        <span class="tech-badge">PyTorch Geometric</span>
-                        <span class="tech-badge">Scikit-Learn</span>
-                        <span class="tech-badge">XGBoost</span>
-                    </div>
-                </div>
-
-                 <!-- 6. Audio AI -->
-                 <div class="tilt-card p-6 group" data-aos="fade-up" data-aos-delay="500">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-wave-square text-orange-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-white font-sci">AUDIO & SPEECH</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tech-badge text-orange-400 border-orange-400/30">Whisper</span>
-                        <span class="tech-badge">TTS (Text-to-Speech)</span>
-                        <span class="tech-badge">Audio Codecs (SNAC)</span>
-                        <span class="tech-badge">Automatic Speech Recognition</span>
-                        <span class="tech-badge">Librosa</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Grid (Updated Descriptions) -->
-    <section id="projects" class="py-24">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="section-title text-5xl font-sci font-bold text-white mb-20 text-center" data-value="DEPLOYED_MODULES">DEPLOYED_MODULES</h2>
+            <h2 class="text-3xl font-sci font-bold text-white mb-16 text-center hacker-text" data-value="DEPLOYED_MODULES">DEPLOYED_MODULES</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <!-- Project 1 -->
-                <div class="tilt-card corner-accent p-6 group h-full flex flex-col" data-aos="fade-up">
-                    <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-heart-pulse text-3xl text-cyan"></i>
-                        <a href="https://huggingface.co/Imran1/Med-R1-v1" target="_blank" class="text-slate-500 hover:text-white"><i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-cyan transition">Med-R1-v1 LLM</h3>
-                    <p class="text-base text-slate-300 mb-6 flex-grow leading-relaxed">
-                        A specialized Medical Reasoning LLM. Optimized for high-accuracy clinical QA and diagnostics using <span class="highlight">Unsloth</span> and <span class="highlight">SFT</span> techniques.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="tech-badge text-xs">HuggingFace</span>
-                        <span class="tech-badge text-xs">Unsloth</span>
-                        <span class="tech-badge text-xs">SFT</span>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="tilt-card p-6 group h-full flex flex-col" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-database text-3xl text-purple"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-purple transition">Enterprise Qwen2.5</h3>
-                    <p class="text-base text-slate-300 mb-6 flex-grow leading-relaxed">
-                        Developed for BUSN Bank. Generated a <span class="highlight">1.3M-sample synthetic dataset</span> (22 languages) and fine-tuned Qwen2.5-32B. Deployed via <span class="highlight">vLLM</span>.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="tech-badge text-xs">Qwen2.5</span>
-                        <span class="tech-badge text-xs">vLLM</span>
-                        <span class="tech-badge text-xs">Synthetic Data</span>
+                <!-- P1 -->
+                <div class="holo-card tilt-box h-full group" data-aos="fade-up">
+                    <div class="absolute top-0 right-0 p-3 opacity-50"><i class="fas fa-microchip text-4xl text-white/5"></i></div>
+                    <div class="holo-content flex flex-col">
+                        <div class="flex justify-between items-start mb-4 holo-icon">
+                            <i class="fas fa-heart-pulse text-3xl text-cyan"></i>
+                            <div class="holo-link"><a href="https://huggingface.co/Imran1/Med-R1-v1" target="_blank" class="text-slate-500 hover:text-white"><i class="fas fa-external-link-alt"></i></a></div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan transition">Med-R1-v1 LLM</h3>
+                        <p class="text-sm text-slate-300 mb-4 flex-grow">
+                            Specialized Medical LLM fine-tuned using <span class="highlight">Unsloth</span> and <span class="highlight">SFT</span>. Optimized for clinical QA.
+                        </p>
+                        <div class="mt-auto flex gap-2"><span class="tech-pill border-cyan/30">HuggingFace</span></div>
                     </div>
                 </div>
 
-                <!-- Project 3 -->
-                <div class="tilt-card p-6 group h-full flex flex-col" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-robot text-3xl text-blue-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition">Hybrid Multimodal Agent</h3>
-                    <p class="text-base text-slate-300 mb-6 flex-grow leading-relaxed">
-                        On-premise agentic workflow using <span class="highlight">LangGraph</span> and <span class="highlight">LlamaParse</span>. Processes PDFs, images, and Excel files with embedded visual data.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="tech-badge text-xs">LangGraph</span>
-                        <span class="tech-badge text-xs">RAG</span>
-                        <span class="tech-badge text-xs">LlamaParse</span>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="tilt-card p-6 group h-full flex flex-col" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-microscope text-3xl text-green-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-green-400 transition">DMR-FusionNet</h3>
-                    <p class="text-base text-slate-300 mb-6 flex-grow leading-relaxed">
-                        Novel architecture fusing DenseNet121, GoogLeNet, and MobileNetV2. Achieved <span class="highlight">98.54%</span> accuracy on WBC classification.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="tech-badge text-xs">PyTorch</span>
-                        <span class="tech-badge text-xs">CNN Fusion</span>
+                <!-- P2 -->
+                <div class="holo-card tilt-box h-full group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 p-3 opacity-50"><i class="fas fa-database text-4xl text-white/5"></i></div>
+                    <div class="holo-content flex flex-col">
+                        <div class="flex justify-between items-start mb-4 holo-icon">
+                            <i class="fas fa-network-wired text-3xl text-purple"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple transition">Enterprise Qwen2.5</h3>
+                        <p class="text-sm text-slate-300 mb-4 flex-grow">
+                            Generated <span class="highlight">1.3M synthetic samples</span>. Fine-tuned Qwen2.5-32B. Deployed on <span class="highlight">vLLM</span>.
+                        </p>
+                        <div class="mt-auto flex gap-2"><span class="tech-pill border-purple/30">GenAI</span></div>
                     </div>
                 </div>
 
-                <!-- Project 5 -->
-                <div class="tilt-card p-6 group h-full flex flex-col" data-aos="fade-up" data-aos-delay="400">
-                    <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-tags text-3xl text-yellow-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-yellow-400 transition">Auto Data Pipeline</h3>
-                    <p class="text-base text-slate-300 mb-6 flex-grow leading-relaxed">
-                        Automated annotation pipeline using <span class="highlight">YOLOv11</span>. Processed 24,998 images in 25 minutes, accelerating dataset creation.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="tech-badge text-xs">YOLOv11</span>
-                        <span class="tech-badge text-xs">Automation</span>
+                <!-- P3 -->
+                <div class="holo-card tilt-box h-full group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 p-3 opacity-50"><i class="fas fa-robot text-4xl text-white/5"></i></div>
+                    <div class="holo-content flex flex-col">
+                        <div class="flex justify-between items-start mb-4 holo-icon">
+                            <i class="fas fa-robot text-3xl text-blue-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-500 transition">Multimodal Agent</h3>
+                        <p class="text-sm text-slate-300 mb-4 flex-grow">
+                            Agentic workflow using <span class="highlight">LangGraph</span> to process PDFs, Excel & Images.
+                        </p>
+                        <div class="mt-auto flex gap-2"><span class="tech-pill border-blue-500/30">RAG</span></div>
                     </div>
                 </div>
 
-                 <!-- Project 6 -->
-                 <div class="tilt-card p-6 group h-full flex flex-col" data-aos="fade-up" data-aos-delay="500">
-                    <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-microphone-lines text-3xl text-orange-400"></i>
+                <!-- P4 -->
+                <div class="holo-card tilt-box h-full group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="holo-content flex flex-col">
+                        <div class="flex justify-between items-start mb-4 holo-icon">
+                            <i class="fas fa-microscope text-3xl text-green-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-green-500 transition">DMR-FusionNet</h3>
+                        <p class="text-sm text-slate-300 mb-4 flex-grow">
+                            Novel architecture fusing DenseNet & MobileNetV2. <span class="highlight">98.54%</span> on WBC.
+                        </p>
+                        <div class="mt-auto flex gap-2"><span class="tech-pill border-green-500/30">CV</span></div>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-orange-400 transition">Custom Speech-to-Text</h3>
-                    <p class="text-base text-slate-300 mb-6 flex-grow leading-relaxed">
-                        Built a custom STT model from scratch using transformer architecture. Achieved WER of <span class="highlight">41.2%</span> on low-resource language data.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="tech-badge text-xs">Audio Transformers</span>
-                        <span class="tech-badge text-xs">ASR</span>
+                </div>
+
+                <!-- P5 -->
+                <div class="holo-card tilt-box h-full group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="holo-content flex flex-col">
+                        <div class="flex justify-between items-start mb-4 holo-icon">
+                            <i class="fas fa-tags text-3xl text-yellow-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-500 transition">Auto-Annotation</h3>
+                        <p class="text-sm text-slate-300 mb-4 flex-grow">
+                            Pipeline using <span class="highlight">YOLOv11</span>. Processed 24,998 images in 25 minutes.
+                        </p>
+                        <div class="mt-auto flex gap-2"><span class="tech-pill border-yellow-500/30">Automation</span></div>
+                    </div>
+                </div>
+
+                 <!-- P6 -->
+                 <div class="holo-card tilt-box h-full group" data-aos="fade-up" data-aos-delay="500">
+                    <div class="holo-content flex flex-col">
+                        <div class="flex justify-between items-start mb-4 holo-icon">
+                            <i class="fas fa-microphone text-3xl text-orange-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-orange-500 transition">Custom STT</h3>
+                        <p class="text-sm text-slate-300 mb-4 flex-grow">
+                            Built Speech-to-Text from scratch using Transformers. <span class="highlight">WER 41.2%</span>.
+                        </p>
+                        <div class="mt-auto flex gap-2"><span class="tech-pill border-orange-500/30">Audio</span></div>
                     </div>
                 </div>
 
@@ -518,92 +507,138 @@
         </div>
     </section>
 
-    <!-- Research -->
-    <section id="research" class="py-24 bg-dark/30 border-t border-white/5">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="section-title text-4xl font-sci font-bold text-white mb-16 text-center" data-value="RESEARCH_DATA">RESEARCH_DATA</h2>
-
-            <div class="space-y-6">
-                
-                <div class="tilt-card p-8 border-l-4 border-l-green-500 hover:translate-x-2 transition-transform" data-aos="flip-up">
-                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-3">
-                        <h3 class="text-xl font-bold text-white font-sci">Pashto Poetry Generation</h3>
-                        <span class="text-green-400 font-mono text-xs border border-green-500/30 px-3 py-1 rounded mt-2 md:mt-0 w-fit">PUBLISHED 2024</span>
+    <!-- Research & Blogs -->
+    <section id="research" class="py-20 bg-white/5 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <!-- Research Papers -->
+            <div class="mb-20">
+                <h2 class="text-3xl font-sci font-bold text-white mb-12 text-center hacker-text" data-value="RESEARCH_PAPERS">RESEARCH_PAPERS</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <div class="holo-card tilt-box" data-aos="fade-up">
+                        <div class="holo-content border-l-4 border-l-green-500">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="text-lg font-bold text-white">Pashto Poetry Generation</h3>
+                                <span class="text-[10px] font-bold text-green-400 border border-green-500/30 px-2 py-1 rounded bg-green-500/10">PUBLISHED</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mb-2 italic">PeerJ Computer Science (2024)</p>
+                            <div class="holo-link"><a href="https://peerj.com/articles/cs-2163/" target="_blank" class="text-xs text-cyan hover:underline font-bold">READ DOI &rarr;</a></div>
+                        </div>
                     </div>
-                    <p class="text-slate-300 text-base mb-4">Deep Learning with Pre-trained Transformers for Low-resource Languages. Published in PeerJ Computer Science.</p>
-                    <a href="https://peerj.com/articles/cs-2163/" class="text-cyan text-sm hover:underline font-mono">READ_PAPER >></a>
-                </div>
 
-                <div class="tilt-card p-8 border-l-4 border-l-yellow-500 hover:translate-x-2 transition-transform" data-aos="flip-up">
-                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-3">
-                        <h3 class="text-xl font-bold text-white font-sci">When AI Meets Medicine</h3>
-                        <span class="text-yellow-400 font-mono text-xs border border-yellow-500/30 px-3 py-1 rounded mt-2 md:mt-0 w-fit">UNDER REVIEW</span>
+                    <div class="holo-card tilt-box" data-aos="fade-up" data-aos-delay="100">
+                        <div class="holo-content border-l-4 border-l-yellow-500">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="text-lg font-bold text-white">When AI Meets Medicine</h3>
+                                <span class="text-[10px] font-bold text-yellow-400 border border-yellow-500/30 px-2 py-1 rounded bg-yellow-500/10">UNDER REVIEW</span>
+                            </div>
+                            <p class="text-sm text-slate-300">Comprehensive Survey of Deep Learning, LLMs, and Multimodal Fusions in Medicine.</p>
+                        </div>
                     </div>
-                    <p class="text-slate-300 text-base">Comprehensive Survey of Deep Learning, LLMs, and Multimodal Fusions in Medication Recommendation.</p>
-                </div>
 
-                <div class="tilt-card p-8 border-l-4 border-l-cyan hover:translate-x-2 transition-transform" data-aos="flip-up">
-                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-3">
-                        <h3 class="text-xl font-bold text-white font-sci">PRIME-GATE</h3>
-                        <span class="text-cyan font-mono text-xs border border-cyan/30 px-3 py-1 rounded mt-2 md:mt-0 w-fit">IN PROGRESS</span>
+                    <div class="holo-card tilt-box" data-aos="fade-up" data-aos-delay="200">
+                        <div class="holo-content border-l-4 border-l-cyan">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="text-lg font-bold text-white">PRIME-GATE</h3>
+                                <span class="text-[10px] font-bold text-cyan border border-cyan/30 px-2 py-1 rounded bg-cyan/10">IN PROGRESS</span>
+                            </div>
+                            <p class="text-sm text-slate-300">Personalized and Robust Intelligent Medication Engine Using Graph-Aware Temporal Encoding.</p>
+                        </div>
                     </div>
-                    <p class="text-slate-300 text-base">Personalized and Robust Intelligent Medication Engine Using Graph-Aware Temporal Encoding.</p>
-                </div>
 
+                    <div class="holo-card tilt-box" data-aos="fade-up" data-aos-delay="300">
+                        <div class="holo-content border-l-4 border-l-purple">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="text-lg font-bold text-white">MIRA-Lite-MT</h3>
+                                <span class="text-[10px] font-bold text-purple border border-purple/30 px-2 py-1 rounded bg-purple/10">IN PROGRESS</span>
+                            </div>
+                            <p class="text-sm text-slate-300">Lightweight Multimodal Instruction-Guided Retrieval-Augmented Reasoning.</p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
+            <!-- Tech Blogs -->
+            <div>
+                <h2 class="text-3xl font-sci font-bold text-white mb-12 text-center hacker-text" data-value="TECHNICAL_WRITING">TECHNICAL_WRITING</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <a href="https://medium.com/@imranullahds/accelerating-long-sequence-transformers-with-ring-vs-striped-attention-on-multiple-gpus-4615da572af1" target="_blank" class="holo-card tilt-box block" data-aos="fade-up">
+                        <div class="holo-content">
+                             <h4 class="font-bold text-white text-sm mb-2">Accelerating Transformers</h4>
+                             <p class="text-xs text-slate-400">Ring vs. Striped Attention on Multi-GPUs.</p>
+                        </div>
+                    </a>
+                     <a href="https://medium.com/@imranullahds/detailed-breakdown-of-the-math-formulas-dataset-examples-and-training-methods-from-the-deepseek-b16dbc8c7c57" target="_blank" class="holo-card tilt-box block" data-aos="fade-up" data-aos-delay="100">
+                        <div class="holo-content">
+                             <h4 class="font-bold text-white text-sm mb-2">DeepSeek R1 Breakdown</h4>
+                             <p class="text-xs text-slate-400">Math formulas & training methods.</p>
+                        </div>
+                    </a>
+                     <a href="https://medium.com/@imranullahds/unlocking-efficiency-a-deep-dive-into-medical-model-fine-tuning-with-unsloth-trl-and-peft-066358fc197b" target="_blank" class="holo-card tilt-box block" data-aos="fade-up" data-aos-delay="200">
+                        <div class="holo-content">
+                             <h4 class="font-bold text-white text-sm mb-2">Medical Fine-Tuning</h4>
+                             <p class="text-xs text-slate-400">Efficiency with Unsloth & PEFT.</p>
+                        </div>
+                    </a>
+                     <a href="https://medium.com/@imranullahds/openchat-3-5-a-deep-dive-into-sft-fine-tuning-with-unsloth-0d9eba710571" target="_blank" class="holo-card tilt-box block" data-aos="fade-up" data-aos-delay="300">
+                        <div class="holo-content">
+                             <h4 class="font-bold text-white text-sm mb-2">OpenChat 3.5 SFT Guide</h4>
+                             <p class="text-xs text-slate-400">Deep dive into SFT with Unsloth.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 border-t border-white/10 bg-black text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-sci-fi opacity-20"></div>
-        <div class="relative z-10">
-            <h2 class="text-2xl text-white font-sci mb-8 tracking-widest">INITIALIZE_CONTACT</h2>
-            
-            <div class="flex justify-center gap-8 mb-10">
-                <a href="https://linkedin.com/in/imranullahds" class="w-14 h-14 flex items-center justify-center border border-slate-700 rounded-full hover:border-cyan hover:text-cyan hover:shadow-[0_0_20px_#00f3ff] transition-all text-slate-400 bg-dark"><i class="fab fa-linkedin text-2xl"></i></a>
-                <a href="https://github.com/imrankh46" class="w-14 h-14 flex items-center justify-center border border-slate-700 rounded-full hover:border-white hover:text-white hover:shadow-[0_0_20px_white] transition-all text-slate-400 bg-dark"><i class="fab fa-github text-2xl"></i></a>
-                <a href="mailto:imranullahds@gmail.com" class="w-14 h-14 flex items-center justify-center border border-slate-700 rounded-full hover:border-purple hover:text-purple hover:shadow-[0_0_20px_#bc13fe] transition-all text-slate-400 bg-dark"><i class="fas fa-envelope text-2xl"></i></a>
-                <a href="https://buymeacoffee.com/imranullahds" class="w-14 h-14 flex items-center justify-center border border-slate-700 rounded-full hover:border-yellow-400 hover:text-yellow-400 hover:shadow-[0_0_20px_yellow] transition-all text-slate-400 bg-dark"><i class="fas fa-coffee text-2xl"></i></a>
-            </div>
-
-            <p class="text-slate-600 font-mono text-xs tracking-widest">SYSTEM_ID: IMRAN_ULLAH_CV // TERMINATED</p>
+    <footer class="py-12 border-t border-white/10 bg-dark text-center relative">
+        <div class="absolute inset-0 bg-gradient-to-t from-cyan/5 to-transparent pointer-events-none"></div>
+        <h2 class="text-xl text-white font-sci mb-6 tracking-widest">INITIALIZE_CONTACT</h2>
+        
+        <div class="flex justify-center gap-8 mb-8 relative z-10">
+            <a href="https://linkedin.com/in/imranullahds" class="text-slate-500 hover:text-cyan text-2xl transition transform hover:scale-110"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/imrankh46" class="text-slate-500 hover:text-white text-2xl transition transform hover:scale-110"><i class="fab fa-github"></i></a>
+            <a href="https://www.upwork.com/freelancers/~01c5627da584877e0c?mp_source=share" class="text-slate-500 hover:text-[#14a800] text-2xl transition transform hover:scale-110"><i class="fas fa-briefcase"></i></a>
+            <a href="mailto:imranullahds@gmail.com" class="text-slate-500 hover:text-purple text-2xl transition transform hover:scale-110"><i class="fas fa-envelope"></i></a>
         </div>
+
+        <p class="text-slate-600 font-mono text-xs">SYSTEM_ID: IMRAN_ULLAH_CV // TERMINATED</p>
     </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            offset: 50,
-            duration: 800,
-            easing: 'ease-out-cubic',
-            once: true
-        });
+        AOS.init({ offset: 60, duration: 800, once: true });
 
         // 3D Tilt Logic
-        const cards = document.querySelectorAll('.tilt-card');
+        const cards = document.querySelectorAll('.tilt-box');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
+                
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                const rotateX = ((y - centerY) / centerY) * -3; // Subtle tilt
-                const rotateY = ((x - centerX) / centerX) * 3;
+                // Max rotation degree
+                const rotateX = ((y - centerY) / 10) * -1;
+                const rotateY = ((x - centerX) / 10);
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             });
 
             card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
             });
         });
 
         // Hacker Text Scramble
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -616,14 +651,13 @@
                             return letters[Math.floor(Math.random() * 26)];
                         }).join("");
                         if(iteration >= originalText.length) clearInterval(interval);
-                        iteration += 1 / 2;
-                    }, 40);
+                        iteration += 1 / 3;
+                    }, 30);
                     observer.unobserve(el);
                 }
             });
         }, { threshold: 0.5 });
-
-        document.querySelectorAll('.section-title').forEach(title => observer.observe(title));
+        document.querySelectorAll('.hacker-text').forEach(title => observer.observe(title));
     </script>
 </body>
 </html>
